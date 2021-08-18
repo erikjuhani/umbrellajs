@@ -1,0 +1,28 @@
+{
+  "name": "umbrellajs",
+  "packageManager": "yarn@3.0.1",
+  "private": true,
+  "scripts": {
+    "build:all": "yarn workspaces foreach --exclude root run g:tsc",
+    "g:tsc": "cd $INIT_CWD && tsc -p tsconfig.build.json",
+    "test": "jest"
+  },
+  "workspaces": [
+    "packages/*",
+    "examples/*"
+  ],
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.29.2",
+    "@typescript-eslint/parser": "^4.29.2",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "jest": "^27.0.6",
+    "prettier": "^2.3.2",
+    "ts-jest": "^27.0.5",
+    "typescript": "^4.3.5"
+  },
+  "dependencies": {
+    "@types/jest": "^27.0.1"
+  }
+}

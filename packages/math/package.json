@@ -1,0 +1,17 @@
+{
+  "name": "@umbrella/math",
+  "version": "0.1.0",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "description": "Math library",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/erikjuhani/umbrellajs",
+    "directory": "packages/math"
+  },
+  "author": "Erik Kinnunen",
+  "license": "MIT",
+  "dependencies": {
+    "@types/jest": "^27.0.1"
+  }
+}
