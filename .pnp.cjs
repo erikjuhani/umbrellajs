@@ -27,15 +27,25 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         "reference": "workspace:packages/event-stream"
       },
       {
+        "name": "@umbrella/machine",
+        "reference": "workspace:packages/machine"
+      },
+      {
         "name": "@umbrella/math",
         "reference": "workspace:packages/math"
+      },
+      {
+        "name": "@umbrella/template",
+        "reference": "workspace:packages/template"
       }
     ],
     "enableTopLevelFallback": true,
     "ignorePatternData": "(^(?:\\.yarn\\/sdks(?:\\/(?!\\.{1,2}(?:\\/|$))(?:(?:(?!(?:^|\\/)\\.{1,2}(?:\\/|$)).)*?)|$))$)",
     "fallbackExclusionList": [
       ["@umbrella/event-stream", ["workspace:packages/event-stream"]],
+      ["@umbrella/machine", ["workspace:packages/machine"]],
       ["@umbrella/math", ["workspace:packages/math"]],
+      ["@umbrella/template", ["workspace:packages/template"]],
       ["umbrellajs", ["workspace:."]]
     ],
     "fallbackPool": [
@@ -1526,11 +1536,31 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "SOFT",
         }]
       ]],
+      ["@umbrella/machine", [
+        ["workspace:packages/machine", {
+          "packageLocation": "./packages/machine/",
+          "packageDependencies": [
+            ["@umbrella/machine", "workspace:packages/machine"],
+            ["@types/jest", "npm:27.0.1"]
+          ],
+          "linkType": "SOFT",
+        }]
+      ]],
       ["@umbrella/math", [
         ["workspace:packages/math", {
           "packageLocation": "./packages/math/",
           "packageDependencies": [
             ["@umbrella/math", "workspace:packages/math"],
+            ["@types/jest", "npm:27.0.1"]
+          ],
+          "linkType": "SOFT",
+        }]
+      ]],
+      ["@umbrella/template", [
+        ["workspace:packages/template", {
+          "packageLocation": "./packages/template/",
+          "packageDependencies": [
+            ["@umbrella/template", "workspace:packages/template"],
             ["@types/jest", "npm:27.0.1"]
           ],
           "linkType": "SOFT",

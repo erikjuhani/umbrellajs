@@ -974,9 +974,25 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@umbrella/machine@workspace:packages/machine":
+  version: 0.0.0-use.local
+  resolution: "@umbrella/machine@workspace:packages/machine"
+  dependencies:
+    "@types/jest": ^27.0.1
+  languageName: unknown
+  linkType: soft
+
 "@umbrella/math@workspace:packages/math":
   version: 0.0.0-use.local
   resolution: "@umbrella/math@workspace:packages/math"
+  dependencies:
+    "@types/jest": ^27.0.1
+  languageName: unknown
+  linkType: soft
+
+"@umbrella/template@workspace:packages/template":
+  version: 0.0.0-use.local
+  resolution: "@umbrella/template@workspace:packages/template"
   dependencies:
     "@types/jest": ^27.0.1
   languageName: unknown
