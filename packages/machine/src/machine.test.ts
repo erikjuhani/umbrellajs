@@ -1,4 +1,4 @@
-import { createMachine, Schema } from "./machine";
+import { createMachine } from "./machine";
 
 describe("createMachine", () => {
   enum SwitchState {
@@ -48,6 +48,70 @@ describe("createMachine", () => {
     expect(machine.state.switch).toEqual(SwitchState.On);
     machine.dispatch({ state: "switch", action: "press", payload: undefined });
     expect(machine.state.switch).toEqual(SwitchState.Off);
+  });
+
+  it("should match state correctly with match function", () => {
+    const machine = createMachine({
+      state: initialState,
+      actions: {
+        switch: {
+          press: (_, useState) => {
+            const [state, setState] = useState();
+            setState(Number(!state));
+          },
+        },
+      },
+    });
+
+    expect(machine.match("switch", SwitchState.Off)).toBeTruthy();
+    machine.dispatch({ state: "switch", action: "press", payload: undefined });
+    expect(machine.match("switch", SwitchState.On)).toBeTruthy();
+  });
+
+  it("should match complex state correctly with match function", () => {
+    const machine = createMachine({
+      state: {
+        weather: {
+          humidity: 40,
+          temperature: 27,
+          station: {
+            name: "unknown",
+            location: "somewhere",
+          },
+        },
+      },
+      actions: {
+        weather: {
+          changeStation: (
+            station: { name: string; location: string },
+            useState
+          ) => {
+            const [state, setState] = useState();
+            setState({ ...state, station });
+          },
+        },
+      },
+    });
+
+    expect(machine.match("weather", machine.state.weather)).toBeTruthy();
+    const nextStation = { name: "next", location: "anywhere" };
+    expect(
+      machine.match("weather", {
+        ...machine.state.weather,
+        station: nextStation,
+      })
+    ).toEqual(false);
+    machine.dispatch({
+      state: "weather",
+      action: "changeStation",
+      payload: nextStation,
+    });
+    expect(
+      machine.match("weather", {
+        ...machine.state.weather,
+        station: nextStation,
+      })
+    ).toBeTruthy();
   });
 
   it("should support multiple states with actions", () => {

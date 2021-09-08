@@ -5,8 +5,8 @@ export type FunctionType<State> = (
   useState: UseState<State>
 ) => void;
 
-export type FunctionMap<State> = {
-  [action: string]: FunctionType<State>;
+export type FunctionMap<State, T extends string = string> = {
+  [action in T]: FunctionType<State>;
 };
 
 export type ActionsMap<State> = { [K in keyof State]?: FunctionMap<State[K]> };
@@ -22,6 +22,7 @@ export interface Machine<State, Actions extends ActionsMap<State>> {
     key: keyof State
   ) => () => [State[typeof key], (state: State[typeof key]) => void];
   actions: Actions;
+  match<Key extends keyof State>(key: Key, value: State[Key]): boolean;
   dispatch: <
     StateKey extends keyof State,
     Action extends keyof Actions[StateKey]
@@ -47,6 +48,12 @@ export function createMachine<
     dispatch: ({ state, action, payload }) => {
       const fn = machine.actions[state][action];
       fn && fn(payload, machine.useState(state));
+    },
+    match: (key, value) => {
+      if (typeof value === "object") {
+        return JSON.stringify(machine.state[key]) === JSON.stringify(value);
+      }
+      return machine.state[key] === value;
     },
   };
   return machine;
