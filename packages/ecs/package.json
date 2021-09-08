@@ -1,0 +1,19 @@
+{
+  "name": "@umbrella/ecs",
+  "version": "0.1.0",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "description": "Entity component system package",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/erikjuhani/umbrellajs",
+    "directory": "packages/entity"
+  },
+  "author": "Erik Kinnunen",
+  "license": "MIT",
+  "dependencies": {
+    "@types/jest": "^27.0.1",
+    "@types/uuid": "^8.3.1",
+    "uuid": "^8.3.2"
+  }
+}

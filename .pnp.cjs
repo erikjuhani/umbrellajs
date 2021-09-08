@@ -23,6 +23,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         "reference": "workspace:."
       },
       {
+        "name": "@umbrella/ecs",
+        "reference": "workspace:packages/ecs"
+      },
+      {
         "name": "@umbrella/event-stream",
         "reference": "workspace:packages/event-stream"
       },
@@ -42,6 +46,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
     "enableTopLevelFallback": true,
     "ignorePatternData": "(^(?:\\.yarn\\/sdks(?:\\/(?!\\.{1,2}(?:\\/|$))(?:(?:(?!(?:^|\\/)\\.{1,2}(?:\\/|$)).)*?)|$))$)",
     "fallbackExclusionList": [
+      ["@umbrella/ecs", ["workspace:packages/ecs"]],
       ["@umbrella/event-stream", ["workspace:packages/event-stream"]],
       ["@umbrella/machine", ["workspace:packages/machine"]],
       ["@umbrella/math", ["workspace:packages/math"]],
@@ -1340,6 +1345,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["@types/uuid", [
+        ["npm:8.3.1", {
+          "packageLocation": "./.yarn/cache/@types-uuid-npm-8.3.1-4239b14bac-b41bdc5e86.zip/node_modules/@types/uuid/",
+          "packageDependencies": [
+            ["@types/uuid", "npm:8.3.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["@types/yargs", [
         ["npm:16.0.4", {
           "packageLocation": "./.yarn/cache/@types-yargs-npm-16.0.4-7aaef7d6c8-caa21d2c95.zip/node_modules/@types/yargs/",
@@ -1524,6 +1538,18 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-visitor-keys", "npm:2.1.0"]
           ],
           "linkType": "HARD",
+        }]
+      ]],
+      ["@umbrella/ecs", [
+        ["workspace:packages/ecs", {
+          "packageLocation": "./packages/ecs/",
+          "packageDependencies": [
+            ["@umbrella/ecs", "workspace:packages/ecs"],
+            ["@types/jest", "npm:27.0.1"],
+            ["@types/uuid", "npm:8.3.1"],
+            ["uuid", "npm:8.3.2"]
+          ],
+          "linkType": "SOFT",
         }]
       ]],
       ["@umbrella/event-stream", [
@@ -5828,6 +5854,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/util-deprecate-npm-1.0.2-e3fe1a219c-474acf1146.zip/node_modules/util-deprecate/",
           "packageDependencies": [
             ["util-deprecate", "npm:1.0.2"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["uuid", [
+        ["npm:8.3.2", {
+          "packageLocation": "./.yarn/cache/uuid-npm-8.3.2-eca0baba53-5575a8a75c.zip/node_modules/uuid/",
+          "packageDependencies": [
+            ["uuid", "npm:8.3.2"]
           ],
           "linkType": "HARD",
         }]

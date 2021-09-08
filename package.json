@@ -5,7 +5,7 @@
   "scripts": {
     "build:all": "yarn workspaces foreach --exclude root run g:tsc",
     "g:tsc": "cd $INIT_CWD && tsc -p tsconfig.build.json",
-    "test": "jest"
+    "test": "jest --runInBand"
   },
   "workspaces": [
     "packages/*",
