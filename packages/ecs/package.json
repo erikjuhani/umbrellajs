@@ -1,19 +1,26 @@
 {
-  "name": "@umbrella/ecs",
-  "version": "0.1.0",
+  "name": "@umbrellajs/ecs",
+  "version": "0.2.1",
   "main": "build/index.js",
   "types": "build/index.d.ts",
+  "scripts": {
+    "prepublish": "run g:prepublish"
+  },
+  "files": [
+    "build/*"
+  ],
   "description": "Entity component system package",
   "repository": {
     "type": "git",
     "url": "https://github.com/erikjuhani/umbrellajs",
     "directory": "packages/entity"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "author": "Erik Kinnunen",
   "license": "MIT",
   "dependencies": {
-    "@types/jest": "^27.0.1",
-    "@types/uuid": "^8.3.1",
-    "uuid": "^8.3.2"
+    "@types/jest": "^27.0.1"
   }
 }

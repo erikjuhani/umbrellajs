@@ -1,9 +1,12 @@
 {
-  "name": "@umbrella/machine",
+  "name": "@umbrellajs/machine",
   "version": "0.2.0",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "description": "State machine library",
+  "scripts": {
+    "prepublish": "run g:prepublish"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/erikjuhani/umbrellajs",

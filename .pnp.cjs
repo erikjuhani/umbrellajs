@@ -23,34 +23,34 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         "reference": "workspace:."
       },
       {
-        "name": "@umbrella/ecs",
+        "name": "@umbrellajs/ecs",
         "reference": "workspace:packages/ecs"
       },
       {
-        "name": "@umbrella/event-stream",
+        "name": "@umbrellajs/event-stream",
         "reference": "workspace:packages/event-stream"
       },
       {
-        "name": "@umbrella/machine",
+        "name": "@umbrellajs/machine",
         "reference": "workspace:packages/machine"
       },
       {
-        "name": "@umbrella/math",
+        "name": "@umbrellajs/math",
         "reference": "workspace:packages/math"
       },
       {
-        "name": "@umbrella/template",
+        "name": "@umbrellajs/template",
         "reference": "workspace:packages/template"
       }
     ],
     "enableTopLevelFallback": true,
     "ignorePatternData": "(^(?:\\.yarn\\/sdks(?:\\/(?!\\.{1,2}(?:\\/|$))(?:(?:(?!(?:^|\\/)\\.{1,2}(?:\\/|$)).)*?)|$))$)",
     "fallbackExclusionList": [
-      ["@umbrella/ecs", ["workspace:packages/ecs"]],
-      ["@umbrella/event-stream", ["workspace:packages/event-stream"]],
-      ["@umbrella/machine", ["workspace:packages/machine"]],
-      ["@umbrella/math", ["workspace:packages/math"]],
-      ["@umbrella/template", ["workspace:packages/template"]],
+      ["@umbrellajs/ecs", ["workspace:packages/ecs"]],
+      ["@umbrellajs/event-stream", ["workspace:packages/event-stream"]],
+      ["@umbrellajs/machine", ["workspace:packages/machine"]],
+      ["@umbrellajs/math", ["workspace:packages/math"]],
+      ["@umbrellajs/template", ["workspace:packages/template"]],
       ["umbrellajs", ["workspace:."]]
     ],
     "fallbackPool": [
@@ -1345,15 +1345,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
-      ["@types/uuid", [
-        ["npm:8.3.1", {
-          "packageLocation": "./.yarn/cache/@types-uuid-npm-8.3.1-4239b14bac-b41bdc5e86.zip/node_modules/@types/uuid/",
-          "packageDependencies": [
-            ["@types/uuid", "npm:8.3.1"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
       ["@types/yargs", [
         ["npm:16.0.4", {
           "packageLocation": "./.yarn/cache/@types-yargs-npm-16.0.4-7aaef7d6c8-caa21d2c95.zip/node_modules/@types/yargs/",
@@ -1540,53 +1531,51 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
-      ["@umbrella/ecs", [
+      ["@umbrellajs/ecs", [
         ["workspace:packages/ecs", {
           "packageLocation": "./packages/ecs/",
           "packageDependencies": [
-            ["@umbrella/ecs", "workspace:packages/ecs"],
-            ["@types/jest", "npm:27.0.1"],
-            ["@types/uuid", "npm:8.3.1"],
-            ["uuid", "npm:8.3.2"]
+            ["@umbrellajs/ecs", "workspace:packages/ecs"],
+            ["@types/jest", "npm:27.0.1"]
           ],
           "linkType": "SOFT",
         }]
       ]],
-      ["@umbrella/event-stream", [
+      ["@umbrellajs/event-stream", [
         ["workspace:packages/event-stream", {
           "packageLocation": "./packages/event-stream/",
           "packageDependencies": [
-            ["@umbrella/event-stream", "workspace:packages/event-stream"],
+            ["@umbrellajs/event-stream", "workspace:packages/event-stream"],
             ["@types/jest", "npm:27.0.1"]
           ],
           "linkType": "SOFT",
         }]
       ]],
-      ["@umbrella/machine", [
+      ["@umbrellajs/machine", [
         ["workspace:packages/machine", {
           "packageLocation": "./packages/machine/",
           "packageDependencies": [
-            ["@umbrella/machine", "workspace:packages/machine"],
+            ["@umbrellajs/machine", "workspace:packages/machine"],
             ["@types/jest", "npm:27.0.1"]
           ],
           "linkType": "SOFT",
         }]
       ]],
-      ["@umbrella/math", [
+      ["@umbrellajs/math", [
         ["workspace:packages/math", {
           "packageLocation": "./packages/math/",
           "packageDependencies": [
-            ["@umbrella/math", "workspace:packages/math"],
+            ["@umbrellajs/math", "workspace:packages/math"],
             ["@types/jest", "npm:27.0.1"]
           ],
           "linkType": "SOFT",
         }]
       ]],
-      ["@umbrella/template", [
+      ["@umbrellajs/template", [
         ["workspace:packages/template", {
           "packageLocation": "./packages/template/",
           "packageDependencies": [
-            ["@umbrella/template", "workspace:packages/template"],
+            ["@umbrellajs/template", "workspace:packages/template"],
             ["@types/jest", "npm:27.0.1"]
           ],
           "linkType": "SOFT",
@@ -5854,15 +5843,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/util-deprecate-npm-1.0.2-e3fe1a219c-474acf1146.zip/node_modules/util-deprecate/",
           "packageDependencies": [
             ["util-deprecate", "npm:1.0.2"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
-      ["uuid", [
-        ["npm:8.3.2", {
-          "packageLocation": "./.yarn/cache/uuid-npm-8.3.2-eca0baba53-5575a8a75c.zip/node_modules/uuid/",
-          "packageDependencies": [
-            ["uuid", "npm:8.3.2"]
           ],
           "linkType": "HARD",
         }]

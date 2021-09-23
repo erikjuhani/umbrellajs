@@ -1,9 +1,12 @@
 {
-  "name": "@umbrella/math",
+  "name": "@umbrellajs/math",
   "version": "0.1.0",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "description": "Math library",
+  "scripts": {
+    "prepublish": "run g:prepublish"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/erikjuhani/umbrellajs",

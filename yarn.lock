@@ -851,13 +851,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/uuid@npm:^8.3.1":
-  version: 8.3.1
-  resolution: "@types/uuid@npm:8.3.1"
-  checksum: b41bdc5e86c6f0f1899306be10455636da0f2168c9489b869edd6837ddeb7c0e501b1ff7d857402462986bada2a379125743dd895fa801d03437cd632116a373
-  languageName: node
-  linkType: hard
-
 "@types/yargs-parser@npm:*":
   version: 20.2.1
   resolution: "@types/yargs-parser@npm:20.2.1"
@@ -973,43 +966,41 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@umbrella/ecs@workspace:packages/ecs":
+"@umbrellajs/ecs@workspace:packages/ecs":
   version: 0.0.0-use.local
-  resolution: "@umbrella/ecs@workspace:packages/ecs"
-  dependencies:
-    "@types/jest": ^27.0.1
-    "@types/uuid": ^8.3.1
-    uuid: ^8.3.2
-  languageName: unknown
-  linkType: soft
-
-"@umbrella/event-stream@workspace:packages/event-stream":
-  version: 0.0.0-use.local
-  resolution: "@umbrella/event-stream@workspace:packages/event-stream"
+  resolution: "@umbrellajs/ecs@workspace:packages/ecs"
   dependencies:
     "@types/jest": ^27.0.1
   languageName: unknown
   linkType: soft
 
-"@umbrella/machine@workspace:packages/machine":
+"@umbrellajs/event-stream@workspace:packages/event-stream":
   version: 0.0.0-use.local
-  resolution: "@umbrella/machine@workspace:packages/machine"
+  resolution: "@umbrellajs/event-stream@workspace:packages/event-stream"
   dependencies:
     "@types/jest": ^27.0.1
   languageName: unknown
   linkType: soft
 
-"@umbrella/math@workspace:packages/math":
+"@umbrellajs/machine@workspace:packages/machine":
   version: 0.0.0-use.local
-  resolution: "@umbrella/math@workspace:packages/math"
+  resolution: "@umbrellajs/machine@workspace:packages/machine"
   dependencies:
     "@types/jest": ^27.0.1
   languageName: unknown
   linkType: soft
 
-"@umbrella/template@workspace:packages/template":
+"@umbrellajs/math@workspace:packages/math":
   version: 0.0.0-use.local
-  resolution: "@umbrella/template@workspace:packages/template"
+  resolution: "@umbrellajs/math@workspace:packages/math"
+  dependencies:
+    "@types/jest": ^27.0.1
+  languageName: unknown
+  linkType: soft
+
+"@umbrellajs/template@workspace:packages/template":
+  version: 0.0.0-use.local
+  resolution: "@umbrellajs/template@workspace:packages/template"
   dependencies:
     "@types/jest": ^27.0.1
   languageName: unknown
@@ -4679,15 +4670,6 @@ typescript@^4.3.5:
   version: 1.0.2
   resolution: "util-deprecate@npm:1.0.2"
   checksum: 474acf1146cb2701fe3b074892217553dfcf9a031280919ba1b8d651a068c9b15d863b7303cb15bd00a862b498e6cf4ad7b4a08fb134edd5a6f7641681cb54a2
-  languageName: node
-  linkType: hard
-
-"uuid@npm:^8.3.2":
-  version: 8.3.2
-  resolution: "uuid@npm:8.3.2"
-  bin:
-    uuid: dist/bin/uuid
-  checksum: 5575a8a75c13120e2f10e6ddc801b2c7ed7d8f3c8ac22c7ed0c7b2ba6383ec0abda88c905085d630e251719e0777045ae3236f04c812184b7c765f63a70e58df
   languageName: node
   linkType: hard
 

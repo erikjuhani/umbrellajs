@@ -1,9 +1,12 @@
 {
-  "name": "@umbrella/event-stream",
-  "version": "0.1.0",
+  "name": "@umbrellajs/event-stream",
+  "version": "0.2.0",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "description": "Event stream library",
+  "scripts": {
+    "prepublish": "run g:prepublish"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/erikjuhani/umbrellajs",
