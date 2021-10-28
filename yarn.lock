@@ -837,6 +837,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/pegjs@npm:^0.10.3":
+  version: 0.10.3
+  resolution: "@types/pegjs@npm:0.10.3"
+  checksum: b0301595d7d7da4de9f8edcc8a97ee55c959e74645dd49626bbaf344dd383e1491b43082d34c1f55048566fef21bf219a4b4743f770afbe80a390a3a33926b8a
+  languageName: node
+  linkType: hard
+
 "@types/prettier@npm:^2.1.5":
   version: 2.3.2
   resolution: "@types/prettier@npm:2.3.2"
@@ -965,6 +972,16 @@ __metadata:
   checksum: 34185d8c6466340aba746d69b36d357da2d06577d73f58358648c142bd0f181d7fae01ca1138188a665ef074ea7e1bc6306ef9d50f29914c8bcea4e9ea1f82f2
   languageName: node
   linkType: hard
+
+"@umbrellajs/dice@workspace:packages/dice":
+  version: 0.0.0-use.local
+  resolution: "@umbrellajs/dice@workspace:packages/dice"
+  dependencies:
+    "@types/jest": ^27.0.1
+    "@types/pegjs": ^0.10.3
+    pegjs: ^0.10.0
+  languageName: unknown
+  linkType: soft
 
 "@umbrellajs/ecs@workspace:packages/ecs":
   version: 0.0.0-use.local
@@ -3816,6 +3833,15 @@ fsevents@^2.3.2:
   languageName: node
   linkType: hard
 
+"pegjs@npm:^0.10.0":
+  version: 0.10.0
+  resolution: "pegjs@npm:0.10.0"
+  bin:
+    pegjs: bin/pegjs
+  checksum: 65d184ca0e1823ec0a3e7f384d7fd771bcbbc7abf460c82c9704022c1fa325425dc9007c92982b951879c3c9d4c39bf5cd6d99690e0540ff5016c04ca1ecd17e
+  languageName: node
+  linkType: hard
+
 "picomatch@npm:^2.0.4, picomatch@npm:^2.2.3":
   version: 2.3.0
   resolution: "picomatch@npm:2.3.0"
@@ -3864,12 +3890,12 @@ fsevents@^2.3.2:
   languageName: node
   linkType: hard
 
-"prettier@npm:^2.3.2":
-  version: 2.3.2
-  resolution: "prettier@npm:2.3.2"
+"prettier@npm:2.4.1":
+  version: 2.4.1
+  resolution: "prettier@npm:2.4.1"
   bin:
     prettier: bin-prettier.js
-  checksum: 17ce5784ac67621c292df58e2da60b2ee150c2d6aebea22a6ad9e52fcd6a5e66c349d0a8436ea3bd8ff9d778920a5f68000d7625b74f43558718a49755aa5259
+  checksum: cc6830588b401b0d742862fe9c46bc9118204fb307c3abe0e49e95b35ed23629573807ffdf9cdd65289c252a0bb51fc0171437f6626ee36378dea80f0ee80b91
   languageName: node
   linkType: hard
 
@@ -4626,7 +4652,7 @@ typescript@^4.3.5:
     eslint-config-prettier: ^8.3.0
     eslint-plugin-prettier: ^3.4.0
     jest: ^27.0.6
-    prettier: ^2.3.2
+    prettier: 2.4.1
     ts-jest: ^27.0.5
     typescript: ^4.3.5
   languageName: unknown

@@ -10,13 +10,15 @@
     "ws:build": "run ws:foreach run g:build",
     "ws:test": "run ws:foreach run g:test",
     "ws:lint": "run ws:foreach run g:lint",
+    "ws:format": "run ws:foreach run g:format",
     "ws:clean": "run ws:foreach run g:build --clean",
     "ws:publish": "run ws:foreach run g:publish",
     "g:prepublish": "cd $INIT_CWD && run g:test && run g:lint && run g:build",
     "g:publish": "cd $INIT_CWD && yarn npm publish",
     "g:build": "cd $INIT_CWD && tsc -b",
     "g:lint": "cd $INIT_CWD && eslint",
-    "g:test": "jest $INIT_CWD"
+    "g:test": "jest $INIT_CWD",
+    "g:format": "cd $INIT_CWD && prettier --write ."
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.29.2",
@@ -25,7 +27,7 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.0",
     "jest": "^27.0.6",
-    "prettier": "^2.3.2",
+    "prettier": "2.4.1",
     "ts-jest": "^27.0.5",
     "typescript": "^4.3.5"
   },

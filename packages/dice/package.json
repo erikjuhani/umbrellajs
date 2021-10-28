@@ -1,0 +1,28 @@
+{
+  "name": "@umbrellajs/dice",
+  "version": "0.1.0",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "description": "Dice package",
+  "scripts": {
+    "prepublish": "run g:prepublish"
+  },
+  "files": [
+    "build/*"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/erikjuhani/umbrellajs",
+    "directory": "packages/dice"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "Erik Kinnunen",
+  "license": "MIT",
+  "dependencies": {
+    "@types/jest": "^27.0.1",
+    "@types/pegjs": "^0.10.3",
+    "pegjs": "^0.10.0"
+  }
+}
