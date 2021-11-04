@@ -837,13 +837,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/pegjs@npm:^0.10.3":
-  version: 0.10.3
-  resolution: "@types/pegjs@npm:0.10.3"
-  checksum: b0301595d7d7da4de9f8edcc8a97ee55c959e74645dd49626bbaf344dd383e1491b43082d34c1f55048566fef21bf219a4b4743f770afbe80a390a3a33926b8a
-  languageName: node
-  linkType: hard
-
 "@types/prettier@npm:^2.1.5":
   version: 2.3.2
   resolution: "@types/prettier@npm:2.3.2"
@@ -978,8 +971,7 @@ __metadata:
   resolution: "@umbrellajs/dice@workspace:packages/dice"
   dependencies:
     "@types/jest": ^27.0.1
-    "@types/pegjs": ^0.10.3
-    pegjs: ^0.10.0
+    peggy: ^1.2.0
   languageName: unknown
   linkType: soft
 
@@ -3833,12 +3825,12 @@ fsevents@^2.3.2:
   languageName: node
   linkType: hard
 
-"pegjs@npm:^0.10.0":
-  version: 0.10.0
-  resolution: "pegjs@npm:0.10.0"
+"peggy@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "peggy@npm:1.2.0"
   bin:
-    pegjs: bin/pegjs
-  checksum: 65d184ca0e1823ec0a3e7f384d7fd771bcbbc7abf460c82c9704022c1fa325425dc9007c92982b951879c3c9d4c39bf5cd6d99690e0540ff5016c04ca1ecd17e
+    peggy: bin/peggy
+  checksum: 658c985df8175cb7e90990f663ec5f84d25db6d05adb7f2ffcbcc86c7cddc8de0b818c8d1eb64e78c84ae848e921ff54acabb39da4fb5e497c1dcfdcbfc50b47
   languageName: node
   linkType: hard
 

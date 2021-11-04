@@ -1332,15 +1332,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
-      ["@types/pegjs", [
-        ["npm:0.10.3", {
-          "packageLocation": "./.yarn/cache/@types-pegjs-npm-0.10.3-b8313b76fd-b0301595d7.zip/node_modules/@types/pegjs/",
-          "packageDependencies": [
-            ["@types/pegjs", "npm:0.10.3"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
       ["@types/prettier", [
         ["npm:2.3.2", {
           "packageLocation": "./.yarn/cache/@types-prettier-npm-2.3.2-377cc404e1-c4313e1665.zip/node_modules/@types/prettier/",
@@ -1551,8 +1542,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@umbrellajs/dice", "workspace:packages/dice"],
             ["@types/jest", "npm:27.0.1"],
-            ["@types/pegjs", "npm:0.10.3"],
-            ["pegjs", "npm:0.10.0"]
+            ["peggy", "npm:1.2.0"]
           ],
           "linkType": "SOFT",
         }]
@@ -4886,11 +4876,11 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
-      ["pegjs", [
-        ["npm:0.10.0", {
-          "packageLocation": "./.yarn/cache/pegjs-npm-0.10.0-a48104cf8e-65d184ca0e.zip/node_modules/pegjs/",
+      ["peggy", [
+        ["npm:1.2.0", {
+          "packageLocation": "./.yarn/cache/peggy-npm-1.2.0-dcccbe8690-658c985df8.zip/node_modules/peggy/",
           "packageDependencies": [
-            ["pegjs", "npm:0.10.0"]
+            ["peggy", "npm:1.2.0"]
           ],
           "linkType": "HARD",
         }]

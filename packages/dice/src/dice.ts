@@ -1,33 +1,26 @@
-import peg from "pegjs";
+import peggy from "peggy";
 import grammar from "./grammar";
 
-const parser = peg.generate(grammar);
+const parser = peggy.generate(grammar);
 
-export interface Dice<T extends number = number> {
-  max: T;
-  min: number;
+export interface Dice {
   notation: string;
-  lastResult: number;
-  roll: (amount?: number) => Dice<T>;
-  result: () => number;
+  roll<T extends number | undefined = undefined>(
+    amount?: T
+  ): T extends undefined ? number : T extends 1 ? number : number[];
   toString: () => string;
 }
 
-export function dice<T extends number = number>(sides: T): Dice<T> {
+export function dice(sides: number): Dice {
   const die = {
-    lastResult: 0,
-    max: sides,
-    min: 1,
     notation: `d${sides}`,
     roll: (amount = 1) => {
-      die.lastResult = roll(`${amount > 0 ? amount : 1}d${sides}`);
-      return die;
+      return roll(`${amount > 0 ? amount : 1}${die.notation}`);
     },
-    result: (): number => die.lastResult,
-    toString: () => `d${sides}`,
+    toString: () => die.notation,
   };
 
-  return die;
+  return die as Dice;
 }
 
 export const d4 = () => dice(4);
@@ -38,32 +31,21 @@ export const d20 = () => dice(20);
 
 interface DiceGroup {
   dice: Dice[];
-  add: (...dice: Dice[]) => DiceGroup;
-  roll: () => DiceGroup;
-  result: () => number;
+  roll: () => number[];
   toString: () => string;
 }
 
 export function diceGroup(...die: Dice[]): DiceGroup {
   const group = {
     dice: [...die],
-    add: (...die: Dice[]) => ({ ...group, dice: [...group.dice, ...die] }),
-    roll: () => {
-      group.dice = group.dice.map((die) => die.roll());
-      return group;
-    },
-    result: (): number => {
-      return group.dice.reduce<number>((result, die) => {
-        return result + die.roll().result();
-      }, 0);
-    },
+    roll: () => group.dice.map((die) => die.roll()),
     toString: (): string => {
-      return group.dice.reduce<string>((result, die, index) => {
+      return `{${group.dice.reduce<string>((result, die, index) => {
         if (index === 0) {
           return `${die.notation}`;
         }
         return `${result}+${die.notation}`;
-      }, "");
+      }, "")}}`;
     },
   };
 
@@ -71,30 +53,49 @@ export function diceGroup(...die: Dice[]): DiceGroup {
 }
 
 function isDice(value: unknown): value is Dice {
-  return (value as Dice).max !== undefined;
+  return /\d{0,}d\d{1,}/.test((value as Dice).notation);
 }
 
 function isDiceGroup(value: unknown): value is DiceGroup {
   return (value as DiceGroup).dice !== undefined;
 }
 
-type RollCallbackFn = (result: number) => number;
+type RollCallbackFn = (result: number | number[]) => number;
+
+type Operator = "+" | "-" | "/" | "*" | "x";
+type Modifier = "d" | "k";
+
+type Notation<T extends string = string> = T extends
+  | `${infer Head}d${infer Tail}`
+  ? Tail extends `${number}${Operator | Modifier}${infer A}d${infer B}`
+    ? number[]
+    : Head extends ""
+    ? number
+    : Head extends "0"
+    ? number
+    : Head extends "1"
+    ? number
+    : number[]
+  : number | number[];
 
 export function roll(die: Dice, callback?: RollCallbackFn): number;
-export function roll(group: DiceGroup, callback?: RollCallbackFn): number;
-export function roll(notation: string, callback?: RollCallbackFn): number;
+export function roll(group: DiceGroup, callback?: RollCallbackFn): number[];
+export function roll<T extends string = string>(
+  notation: T,
+  callback?: RollCallbackFn
+): Notation<T>;
 export function roll(
   diceOrNotation: Dice | DiceGroup | string,
   callback?: RollCallbackFn
-): number {
+): number | number[] {
   if (isDice(diceOrNotation)) {
     const { roll } = diceOrNotation;
-    return callback ? callback(roll().result()) : roll().result();
+    return callback ? callback(roll()) : roll();
   }
 
   if (isDiceGroup(diceOrNotation)) {
     const { roll } = diceOrNotation;
-    return callback ? callback(roll().result()) : roll().result();
+    return callback ? callback(roll()) : roll();
   }
 
   if (typeof diceOrNotation === "string") {
