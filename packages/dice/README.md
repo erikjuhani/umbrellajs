@@ -3,43 +3,23 @@
 Dice module consists of premade _dice_ and a roll function that can be used to either
 roll for a certain die, diceGroup or dice notation.
 
-## Features
-
-Die: A die with roll functionality.
-
-DiceGroup: A dice group with roll functionality.
-
-roll: A function that returns a result or results for rolling dice.
-
 ## Usage
 
-### Roll function
+### Die
 
-The `roll` function returns a number or array of numbers value as the roll result.
-`roll` function takes in either a `die`, `diceGroup` or `string` as a parameter.
-
-If given a string, it should follow the (dice notation)[https://en.wikipedia.org/wiki/Dice_notation] standard.
-
-```ts
-import { dice, roll } from "@umbrellajs/dice";
-
-roll(dice(6)); // Roll result in numeric value
-```
-
-#### Rolling
-
-##### Die
-
-A simple roll with die.
+The `dice` function can be used to create a separate die with the amount of chosen sides.
 
 ```ts
 import { dice } from "@umbrellajs/dice";
 
+// Create a six faced die
 const die = dice(6);
-die.roll(); // Roll result in numeric value
+
+// Roll the die
+die.roll(); // 4
 ```
 
-##### Dice
+### Dice group
 
 Rolling a dice group is identical to rolling a single die.
 
@@ -47,32 +27,182 @@ Rolling a dice group is identical to rolling a single die.
 import { dice, diceGroup } from "@umbrellajs/dice";
 
 const dice = diceGroup(dice(12), dice(20));
-dice.roll(); // Roll results in an array of numbers. In this case the size is two.
+
+dice.roll(); // [4, 16]
 ```
 
-##### Dice notation
+### Roll function
 
-Using dice notation is more flexible and can handle more complex situations.
+The `roll` function returns a single number value or an array of number values as the roll result.
+`roll` function takes in either a `die`, `diceGroup` or `string` (Dice Notation) as a parameter.
+
+If given a string, the roll function will follow the [dice notation](https://en.wikipedia.org/wiki/Dice_notation) standard.
+
+```ts
+import { dice, d6, d20, roll } from "@umbrellajs/dice";
+
+roll(dice(6)); // 4
+
+roll(diceGroup(d6(), d20())); // [4, 16]
+
+roll("2d20"); // [17, 18]
+```
+
+#### Callback (Experimental)
+
+A callback can be used to manipulate the return data beforehand.
+For example a certain modifier can be added to the end result.
+
+### Rolling with dice notation
+
+#### Single die roll
 
 ```ts
 import { roll } from "@umbrellajs/dice";
 
-roll("d20"); // Roll a die with 20 faces
-roll("3d6"); // Roll 3 dice with 6 faces
+roll("d20"); // 17
 
-// Examples of more complex equations
-roll("(d20+10)-(d20+2)");
+roll("1d6"); // 4
+```
 
-const modifier = 2;
-roll(`((d7+2)-((d6+1)/${modifier}))*2`);
+#### Multiple dice roll
 
-// Keep modifiers
-roll("3d20kh"); // Keep highest roll
-roll("3d20kl"); // Keep lowest roll
-roll("3d20k2"); // Keep two highest rolls
+```ts
+import { roll } from "@umbrellajs/dice";
 
-// Drop modifiers
-roll("3d20dh"); // Drop highest roll
-roll("3d20dl"); // Drop lowest roll
-roll("3d20d2"); // Drop 2 lowest rolls
+roll("2d20");
+// [6, 18]
+
+roll("4d6");
+// [2, 6, 3, 1]
+```
+
+#### Exploding die
+
+Exploding roll will be rolled again if it hits the target number.
+If target number is not explicitly set that target number will be the maximum possible value of the die.
+
+```ts
+import { roll } from "@umbrellajs/dice";
+
+roll("2d6!");
+// [2, 6, 3]
+
+// Explicit target number
+// Greater than
+roll("2d6!>2");
+// [2, 6, 4, 2, 3]
+
+// Greater than or equal to
+roll("2d6!>=2");
+// [2, 3, 1, 6, 4, 2, 1, 3, 5, 2, 1]
+
+// Lesser than
+roll("2d6!<3");
+// [2, 3, 6, 3]
+
+// Lesser than or equal to
+roll("2d6!<=3");
+// [2, 3, 1, 5, 6, 3, 5]
+
+// Equal to
+roll("2d6!=2");
+// [2, 4, 6, 3]
+
+// Not equal to
+roll("2d6!!=2");
+// [2, 6, 4, 2, 3, 5, 2]
+```
+
+#### Fudge die
+
+Fudge die or fate die returns a value between -1, 0 and 1.
+
+```ts
+roll("dF"); // -1 | 0 | 1
+```
+
+#### Percentile die
+
+Percentile die returns a value between 1 and 100.
+
+```ts
+roll("d%"); // 44
+```
+
+#### Keep modifier
+
+```ts
+import { roll } from "@umbrellajs/dice";
+
+// Keep highest roll
+roll("3d20k");
+// [18, 19, 20] -> 20
+
+roll("3d20kh");
+// [18, 19, 20] -> 20
+
+// Keep two higest rolls
+roll(4d20k2);
+// [17, 18, 19, 20] -> [19, 20]
+roll(4d20kh2);
+// [17, 18, 19, 20] -> [19, 20]
+
+// Keep lowest roll
+roll("3d20kl");
+// [17, 18, 19, 20] -> 17
+
+// Keep two lowest rolls
+roll("4d20kl2");
+// [17, 18, 19, 20] -> [17, 18]
+```
+
+#### Drop modifier
+
+```ts
+import { roll } from "@umbrellajs/dice";
+
+// Drop lowest roll
+roll("3d20d");
+// [18, 19, 20] -> [19, 20]
+roll("3d20dl");
+// [18, 19, 20] -> [19, 20]
+
+// Drop two lowest rolls
+roll(4d20d2);
+// [17, 18, 19, 20] -> [19, 20]
+roll(4d20dl2);
+// [17, 18, 19, 20] -> [19, 20]
+
+// Drop highest roll
+roll("3d20dh");
+// [18, 19, 20] -> [18, 19]
+
+// Drop two highest rolls
+roll("4d20dh2");
+// [17, 18, 19, 20] -> [17, 18]
+```
+
+#### Multipliers
+
+In addition to standard dice rolls, one can also do use modifiers to change the end result.
+Multiple dice rolls are summed up before applying multipliers.
+
+For example,
+
+```ts
+import { roll } from "@umbrellajs/dice";
+
+// Addition
+roll("2d6+5"); // [4, 2] + 5 -> 6 + 5 -> 11
+
+// Subtraction
+roll("2d6-5"); // [4, 2] - 5 -> 6 - 5 -> 1
+
+// Multiplication
+roll("1d6x5"); // 4 x 5 -> 20
+roll("5*d6"); // 5 * 4 -> 20
+
+// Division
+roll("1d20/2"); // 20 / 2 -> 10
 ```

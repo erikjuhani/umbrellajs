@@ -18,7 +18,7 @@ describe("roll", () => {
   );
 
   it("should give correct result from complex dice notation", () => {
-    const result = roll("((d20 +5) - (d20 +2)) -2");
+    const result = roll("((d20+5)-(d20+2))-2");
     expect(result).toBeGreaterThanOrEqual(-18);
     expect(result).toBeLessThanOrEqual(20);
   });
