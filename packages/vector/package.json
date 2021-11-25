@@ -1,9 +1,9 @@
 {
   "name": "@umbrellajs/vector",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "description": "Math library",
+  "description": "Vector library",
   "scripts": {
     "prepublish": "run g:prepublish"
   },

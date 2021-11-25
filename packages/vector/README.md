@@ -1,13 +1,9 @@
-# @umbrella/vector - Unit vector module
+# @umbrella/vector - Vector module
 
 Minimalistic vector library, with basic Euclidean vector functions.
 
 The vector datatype stores values in an object with x, y, z properties or an array
 with minimum of two items and maximum of three [x, y, z].
-
-## Todo
-
-[] - Direction functions (angles)
 
 ## Usage
 

@@ -2,18 +2,16 @@
   "name": "umbrellajs",
   "private": true,
   "packageManager": "yarn@3.0.1",
-  "workspaces": [
-    "packages/*"
-  ],
+  "workspaces": ["packages/*"],
   "scripts": {
-    "ws:foreach": "yarn workspaces foreach -piv --exclude umbrellajs --exclude @umbrella/template",
+    "ws:foreach": "yarn workspaces foreach -piv --exclude umbrellajs --exclude @umbrellajs/template",
     "ws:build": "run ws:foreach run g:build",
     "ws:test": "run ws:foreach run g:test",
     "ws:lint": "run ws:foreach run g:lint",
     "ws:format": "run ws:foreach run g:format",
     "ws:clean": "run ws:foreach run g:build --clean",
     "ws:publish": "run ws:foreach run g:publish",
-    "g:prepublish": "cd $INIT_CWD && run g:test && run g:lint && run g:build",
+    "g:prepublish": "cd $INIT_CWD && run g:test && run g:lint && run g:build --clean && run g:build",
     "g:publish": "cd $INIT_CWD && yarn npm publish",
     "g:build": "cd $INIT_CWD && tsc -b",
     "g:lint": "cd $INIT_CWD && eslint",

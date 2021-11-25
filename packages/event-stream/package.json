@@ -1,6 +1,6 @@
 {
   "name": "@umbrellajs/event-stream",
-  "version": "0.2.0",
+  "version": "0.2.2",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "description": "Event stream library",
@@ -12,9 +12,12 @@
     "url": "https://github.com/erikjuhani/umbrellajs",
     "directory": "packages/event-stream"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "author": "Erik Kinnunen",
   "license": "MIT",
-  "dependencies": {
+  "devDependencies": {
     "@types/jest": "^27.0.1"
   }
 }

@@ -93,6 +93,12 @@ describe("createMachine", () => {
       },
     });
 
+    machine.dispatch({
+      state: "weather",
+      action: "changeStation",
+      payload: { name: "hello", location: "world" },
+    });
+
     expect(machine.match("weather", machine.state.weather)).toBeTruthy();
     const nextStation = { name: "next", location: "anywhere" };
     expect(

@@ -1,9 +1,11 @@
 {
   "name": "@umbrellajs/dice",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "main": "build/index.js",
   "types": "build/index.d.ts",
-  "files": ["build/*"],
+  "files": [
+    "build/*"
+  ],
   "description": "Dice package",
   "scripts": {
     "prepublish": "run g:prepublish"
@@ -21,5 +23,8 @@
   "dependencies": {
     "@types/jest": "^27.0.1",
     "peggy": "^1.2.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.0.1"
   }
 }
