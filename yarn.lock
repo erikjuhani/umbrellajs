@@ -999,17 +999,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@umbrellajs/math@workspace:packages/math":
+"@umbrellajs/template@workspace:packages/template":
   version: 0.0.0-use.local
-  resolution: "@umbrellajs/math@workspace:packages/math"
+  resolution: "@umbrellajs/template@workspace:packages/template"
   dependencies:
     "@types/jest": ^27.0.1
   languageName: unknown
   linkType: soft
 
-"@umbrellajs/template@workspace:packages/template":
+"@umbrellajs/vector@workspace:packages/vector":
   version: 0.0.0-use.local
-  resolution: "@umbrellajs/template@workspace:packages/template"
+  resolution: "@umbrellajs/vector@workspace:packages/vector"
   dependencies:
     "@types/jest": ^27.0.1
   languageName: unknown

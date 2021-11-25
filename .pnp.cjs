@@ -39,12 +39,12 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         "reference": "workspace:packages/machine"
       },
       {
-        "name": "@umbrellajs/math",
-        "reference": "workspace:packages/math"
-      },
-      {
         "name": "@umbrellajs/template",
         "reference": "workspace:packages/template"
+      },
+      {
+        "name": "@umbrellajs/vector",
+        "reference": "workspace:packages/vector"
       }
     ],
     "enableTopLevelFallback": true,
@@ -54,8 +54,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       ["@umbrellajs/ecs", ["workspace:packages/ecs"]],
       ["@umbrellajs/event-stream", ["workspace:packages/event-stream"]],
       ["@umbrellajs/machine", ["workspace:packages/machine"]],
-      ["@umbrellajs/math", ["workspace:packages/math"]],
       ["@umbrellajs/template", ["workspace:packages/template"]],
+      ["@umbrellajs/vector", ["workspace:packages/vector"]],
       ["umbrellajs", ["workspace:."]]
     ],
     "fallbackPool": [
@@ -1577,21 +1577,21 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "SOFT",
         }]
       ]],
-      ["@umbrellajs/math", [
-        ["workspace:packages/math", {
-          "packageLocation": "./packages/math/",
-          "packageDependencies": [
-            ["@umbrellajs/math", "workspace:packages/math"],
-            ["@types/jest", "npm:27.0.1"]
-          ],
-          "linkType": "SOFT",
-        }]
-      ]],
       ["@umbrellajs/template", [
         ["workspace:packages/template", {
           "packageLocation": "./packages/template/",
           "packageDependencies": [
             ["@umbrellajs/template", "workspace:packages/template"],
+            ["@types/jest", "npm:27.0.1"]
+          ],
+          "linkType": "SOFT",
+        }]
+      ]],
+      ["@umbrellajs/vector", [
+        ["workspace:packages/vector", {
+          "packageLocation": "./packages/vector/",
+          "packageDependencies": [
+            ["@umbrellajs/vector", "workspace:packages/vector"],
             ["@types/jest", "npm:27.0.1"]
           ],
           "linkType": "SOFT",

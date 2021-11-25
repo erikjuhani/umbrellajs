@@ -1,8 +1,8 @@
 {
-  "name": "@umbrellajs/math",
-  "version": "0.1.0",
-  "main": "build/index.js",
-  "types": "build/index.d.ts",
+  "name": "@umbrellajs/vector",
+  "version": "0.3.1",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "description": "Math library",
   "scripts": {
     "prepublish": "run g:prepublish"
@@ -12,9 +12,12 @@
     "url": "https://github.com/erikjuhani/umbrellajs",
     "directory": "packages/math"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "author": "Erik Kinnunen",
   "license": "MIT",
-  "dependencies": {
+  "devDependencies": {
     "@types/jest": "^27.0.1"
   }
 }
