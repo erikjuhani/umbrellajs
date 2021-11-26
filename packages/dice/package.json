@@ -1,6 +1,6 @@
 {
   "name": "@umbrellajs/dice",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": ["dist/*"],
@@ -19,7 +19,6 @@
   "author": "Erik Kinnunen",
   "license": "MIT",
   "dependencies": {
-    "@types/jest": "^27.0.1",
     "peggy": "^1.2.0"
   },
   "devDependencies": {
