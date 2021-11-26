@@ -1,7 +1,7 @@
 {
   "name": "umbrellajs",
   "private": true,
-  "packageManager": "yarn@3.0.1",
+  "packageManager": "yarn@3.1.0",
   "workspaces": ["packages/*"],
   "scripts": {
     "ws:foreach": "yarn workspaces foreach -piv --exclude umbrellajs --exclude @umbrellajs/template",
