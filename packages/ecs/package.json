@@ -1,13 +1,13 @@
 {
   "name": "@umbrellajs/ecs",
-  "version": "0.2.3",
-  "main": "build/index.js",
-  "types": "build/index.d.ts",
+  "version": "0.2.4",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist/*"],
   "description": "Entity component system package",
   "scripts": {
     "prepublish": "run g:prepublish"
   },
-  "files": ["build/*"],
   "repository": {
     "type": "git",
     "url": "https://github.com/erikjuhani/umbrellajs",

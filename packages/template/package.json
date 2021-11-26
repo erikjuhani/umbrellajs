@@ -1,8 +1,9 @@
 {
   "name": "@umbrellajs/template",
   "version": "0.1.1",
-  "main": "build/index.js",
-  "types": "build/index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist/*"],
   "description": "Template typescript package",
   "repository": {
     "type": "git",

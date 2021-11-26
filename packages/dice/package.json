@@ -1,11 +1,9 @@
 {
   "name": "@umbrellajs/dice",
-  "version": "0.3.1",
-  "main": "build/index.js",
-  "types": "build/index.d.ts",
-  "files": [
-    "build/*"
-  ],
+  "version": "0.3.2",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist/*"],
   "description": "Dice package",
   "scripts": {
     "prepublish": "run g:prepublish"
