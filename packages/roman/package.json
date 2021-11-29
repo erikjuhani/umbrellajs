@@ -1,0 +1,26 @@
+{
+  "name": "@umbrellajs/roman",
+  "version": "0.1.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/*"
+  ],
+  "description": "Roman numeral converter",
+  "scripts": {
+    "prepublish": "run g:prepublish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/erikjuhani/umbrellajs",
+    "directory": "packages/roman"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "Erik Kinnunen",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^27.0.3"
+  }
+}

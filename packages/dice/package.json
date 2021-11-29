@@ -3,7 +3,9 @@
   "version": "0.3.3",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "files": ["dist/*"],
+  "files": [
+    "dist/*"
+  ],
   "description": "Dice package",
   "scripts": {
     "prepublish": "run g:prepublish"
@@ -22,6 +24,6 @@
     "peggy": "^1.2.0"
   },
   "devDependencies": {
-    "@types/jest": "^27.0.1"
+    "@types/jest": "^27.0.3"
   }
 }

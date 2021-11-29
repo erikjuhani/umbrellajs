@@ -3,7 +3,9 @@
   "version": "0.1.1",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "files": ["dist/*"],
+  "files": [
+    "dist/*"
+  ],
   "description": "Template typescript package",
   "repository": {
     "type": "git",
@@ -13,6 +15,6 @@
   "author": "Erik Kinnunen",
   "license": "MIT",
   "devDependencies": {
-    "@types/jest": "^27.0.1"
+    "@types/jest": "^27.0.3"
   }
 }

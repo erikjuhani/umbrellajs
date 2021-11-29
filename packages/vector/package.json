@@ -3,7 +3,9 @@
   "version": "0.3.3",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "files": ["dist/*"],
+  "files": [
+    "dist/*"
+  ],
   "description": "Vector library",
   "scripts": {
     "prepublish": "run g:prepublish"

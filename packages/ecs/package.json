@@ -3,7 +3,9 @@
   "version": "0.2.4",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "files": ["dist/*"],
+  "files": [
+    "dist/*"
+  ],
   "description": "Entity component system package",
   "scripts": {
     "prepublish": "run g:prepublish"
@@ -19,6 +21,6 @@
   "author": "Erik Kinnunen",
   "license": "MIT",
   "devDependencies": {
-    "@types/jest": "^27.0.1"
+    "@types/jest": "^27.0.3"
   }
 }

@@ -2,14 +2,12 @@ export type UseState<State> = () => [State, (newState: State) => void];
 
 export type FunctionType<State> = (
   payload: any,
-  useState: UseState<State>
+  useState: UseState<State[keyof State]>
 ) => void;
 
-export type FunctionMap<State, T extends string = string> = {
-  [action in T]: FunctionType<State>;
+export type ActionsMap<State> = {
+  [key in string | keyof State]: { [action: string]: FunctionType<State> };
 };
-
-export type ActionsMap<State> = { [K in keyof State]?: FunctionMap<State[K]> };
 
 export type Schema<State extends object, Actions extends ActionsMap<State>> = {
   state: { [key in keyof State]: State[key] };

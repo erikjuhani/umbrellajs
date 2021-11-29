@@ -39,6 +39,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         "reference": "workspace:packages/machine"
       },
       {
+        "name": "@umbrellajs/roman",
+        "reference": "workspace:packages/roman"
+      },
+      {
         "name": "@umbrellajs/template",
         "reference": "workspace:packages/template"
       },
@@ -54,6 +58,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       ["@umbrellajs/ecs", ["workspace:packages/ecs"]],
       ["@umbrellajs/event-stream", ["workspace:packages/event-stream"]],
       ["@umbrellajs/machine", ["workspace:packages/machine"]],
+      ["@umbrellajs/roman", ["workspace:packages/roman"]],
       ["@umbrellajs/template", ["workspace:packages/template"]],
       ["@umbrellajs/vector", ["workspace:packages/vector"]],
       ["umbrellajs", ["workspace:."]]
@@ -74,7 +79,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest", "virtual:9106f67836613af5ebb4879224359d8baee574fc0a1df0f711f4569c6ccf1fdb1c9d18780c977e74936ff0f95bd2fe866b210e71cf8f28297b13f97da91344e0#npm:27.3.1"],
             ["prettier", "npm:2.5.0"],
             ["ts-jest", "virtual:9106f67836613af5ebb4879224359d8baee574fc0a1df0f711f4569c6ccf1fdb1c9d18780c977e74936ff0f95bd2fe866b210e71cf8f28297b13f97da91344e0#npm:27.0.7"],
-            ["typescript", "patch:typescript@npm%3A4.5.2#~builtin<compat/typescript>::version=4.5.2&hash=ddd1e8"]
+            ["typescript", "patch:typescript@npm%3A4.5.2#~builtin<compat/typescript>::version=4.5.2&hash=493e53"]
           ],
           "linkType": "SOFT",
         }]
@@ -1398,7 +1403,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["regexpp", "npm:3.2.0"],
             ["semver", "npm:7.3.5"],
             ["tsutils", "virtual:1bacd854c50c55963b5ab15961d592f2c01a7afd18393f6f320b4644aab42eb3c511342c550c56d609f877bc1e33cce938105b268eb8ea763bb0d703740c5455#npm:3.21.0"],
-            ["typescript", "patch:typescript@npm%3A4.5.2#~builtin<compat/typescript>::version=4.5.2&hash=ddd1e8"]
+            ["typescript", "patch:typescript@npm%3A4.5.2#~builtin<compat/typescript>::version=4.5.2&hash=493e53"]
           ],
           "packagePeers": [
             "@types/eslint",
@@ -1458,7 +1463,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@typescript-eslint/typescript-estree", "virtual:0d4eb9ad1af0d6c61abe7119146f2615d5c2c667855ded22517e43dd22ce5fcca1a50f0d707d8c670218524aafe09061c052e41863875f4498dec046032fec84#npm:5.4.0"],
             ["debug", "virtual:d2b8ff4ca946871ce9c51afc08080842081037f97234326c5de214ae28f53dca6ac6f476930dda3959c7e5dd3099dbfed23e86d5461423e43cc737463b435caa#npm:4.3.2"],
             ["eslint", "npm:8.3.0"],
-            ["typescript", "patch:typescript@npm%3A4.5.2#~builtin<compat/typescript>::version=4.5.2&hash=ddd1e8"]
+            ["typescript", "patch:typescript@npm%3A4.5.2#~builtin<compat/typescript>::version=4.5.2&hash=493e53"]
           ],
           "packagePeers": [
             "@types/eslint",
@@ -1509,7 +1514,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["is-glob", "npm:4.0.3"],
             ["semver", "npm:7.3.5"],
             ["tsutils", "virtual:1bacd854c50c55963b5ab15961d592f2c01a7afd18393f6f320b4644aab42eb3c511342c550c56d609f877bc1e33cce938105b268eb8ea763bb0d703740c5455#npm:3.21.0"],
-            ["typescript", "patch:typescript@npm%3A4.5.2#~builtin<compat/typescript>::version=4.5.2&hash=ddd1e8"]
+            ["typescript", "patch:typescript@npm%3A4.5.2#~builtin<compat/typescript>::version=4.5.2&hash=493e53"]
           ],
           "packagePeers": [
             "@types/typescript",
@@ -1585,6 +1590,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./packages/machine/",
           "packageDependencies": [
             ["@umbrellajs/machine", "workspace:packages/machine"],
+            ["@types/jest", "npm:27.0.3"]
+          ],
+          "linkType": "SOFT",
+        }]
+      ]],
+      ["@umbrellajs/roman", [
+        ["workspace:packages/roman", {
+          "packageLocation": "./packages/roman/",
+          "packageDependencies": [
+            ["@umbrellajs/roman", "workspace:packages/roman"],
             ["@types/jest", "npm:27.0.3"]
           ],
           "linkType": "SOFT",
@@ -5737,7 +5752,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["lodash.memoize", "npm:4.1.2"],
             ["make-error", "npm:1.3.6"],
             ["semver", "npm:7.3.5"],
-            ["typescript", "patch:typescript@npm%3A4.5.2#~builtin<compat/typescript>::version=4.5.2&hash=ddd1e8"],
+            ["typescript", "patch:typescript@npm%3A4.5.2#~builtin<compat/typescript>::version=4.5.2&hash=493e53"],
             ["yargs-parser", "npm:20.2.9"]
           ],
           "packagePeers": [
@@ -5776,7 +5791,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["tsutils", "virtual:1bacd854c50c55963b5ab15961d592f2c01a7afd18393f6f320b4644aab42eb3c511342c550c56d609f877bc1e33cce938105b268eb8ea763bb0d703740c5455#npm:3.21.0"],
             ["@types/typescript", null],
             ["tslib", "npm:1.14.1"],
-            ["typescript", "patch:typescript@npm%3A4.5.2#~builtin<compat/typescript>::version=4.5.2&hash=ddd1e8"]
+            ["typescript", "patch:typescript@npm%3A4.5.2#~builtin<compat/typescript>::version=4.5.2&hash=493e53"]
           ],
           "packagePeers": [
             "@types/typescript",
@@ -5853,10 +5868,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["typescript", [
-        ["patch:typescript@npm%3A4.5.2#~builtin<compat/typescript>::version=4.5.2&hash=ddd1e8", {
-          "packageLocation": "./.yarn/cache/typescript-patch-04b86b0e5c-24a439e062.zip/node_modules/typescript/",
+        ["patch:typescript@npm%3A4.5.2#~builtin<compat/typescript>::version=4.5.2&hash=493e53", {
+          "packageLocation": "./.yarn/cache/typescript-patch-613ccf361e-53838d56ab.zip/node_modules/typescript/",
           "packageDependencies": [
-            ["typescript", "patch:typescript@npm%3A4.5.2#~builtin<compat/typescript>::version=4.5.2&hash=ddd1e8"]
+            ["typescript", "patch:typescript@npm%3A4.5.2#~builtin<compat/typescript>::version=4.5.2&hash=493e53"]
           ],
           "linkType": "HARD",
         }]
@@ -5875,7 +5890,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest", "virtual:9106f67836613af5ebb4879224359d8baee574fc0a1df0f711f4569c6ccf1fdb1c9d18780c977e74936ff0f95bd2fe866b210e71cf8f28297b13f97da91344e0#npm:27.3.1"],
             ["prettier", "npm:2.5.0"],
             ["ts-jest", "virtual:9106f67836613af5ebb4879224359d8baee574fc0a1df0f711f4569c6ccf1fdb1c9d18780c977e74936ff0f95bd2fe866b210e71cf8f28297b13f97da91344e0#npm:27.0.7"],
-            ["typescript", "patch:typescript@npm%3A4.5.2#~builtin<compat/typescript>::version=4.5.2&hash=ddd1e8"]
+            ["typescript", "patch:typescript@npm%3A4.5.2#~builtin<compat/typescript>::version=4.5.2&hash=493e53"]
           ],
           "linkType": "SOFT",
         }]

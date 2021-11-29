@@ -1,8 +1,10 @@
 {
   "name": "umbrellajs",
   "private": true,
-  "packageManager": "yarn@3.1.0",
-  "workspaces": ["packages/*"],
+  "packageManager": "yarn@3.1.1",
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "ws:foreach": "yarn workspaces foreach -piv --exclude umbrellajs --exclude @umbrellajs/template",
     "ws:build": "run ws:foreach run g:build",
@@ -19,15 +21,15 @@
     "g:format": "cd $INIT_CWD && prettier --write ."
   },
   "devDependencies": {
-    "@types/jest": "^27.0.1",
-    "@typescript-eslint/eslint-plugin": "^4.29.2",
-    "@typescript-eslint/parser": "^4.29.2",
-    "eslint": "^7.32.0",
+    "@types/jest": "^27.0.3",
+    "@typescript-eslint/eslint-plugin": "^5.4.0",
+    "@typescript-eslint/parser": "^5.4.0",
+    "eslint": "^8.3.0",
     "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-prettier": "^3.4.0",
-    "jest": "^27.0.6",
-    "prettier": "2.4.1",
-    "ts-jest": "^27.0.5",
-    "typescript": "^4.3.5"
+    "eslint-plugin-prettier": "^4.0.0",
+    "jest": "^27.3.1",
+    "prettier": "2.5.0",
+    "ts-jest": "^27.0.7",
+    "typescript": "^4.5.2"
   }
 }
