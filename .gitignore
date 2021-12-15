@@ -13,3 +13,4 @@ coverage
 build
 dist
 *.tsbuildinfo
+node_modules

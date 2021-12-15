@@ -817,7 +817,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/jest@npm:^27.0.1, @types/jest@npm:^27.0.3":
+"@types/jest@npm:^27.0.3":
   version: 27.0.3
   resolution: "@types/jest@npm:27.0.3"
   dependencies:
@@ -975,7 +975,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@umbrellajs/dice@workspace:packages/dice"
   dependencies:
-    "@types/jest": ^27.0.3
     peggy: ^1.2.0
   languageName: unknown
   linkType: soft
@@ -983,32 +982,24 @@ __metadata:
 "@umbrellajs/ecs@workspace:packages/ecs":
   version: 0.0.0-use.local
   resolution: "@umbrellajs/ecs@workspace:packages/ecs"
-  dependencies:
-    "@types/jest": ^27.0.3
   languageName: unknown
   linkType: soft
 
 "@umbrellajs/event-stream@workspace:packages/event-stream":
   version: 0.0.0-use.local
   resolution: "@umbrellajs/event-stream@workspace:packages/event-stream"
-  dependencies:
-    "@types/jest": ^27.0.3
   languageName: unknown
   linkType: soft
 
 "@umbrellajs/machine@workspace:packages/machine":
   version: 0.0.0-use.local
   resolution: "@umbrellajs/machine@workspace:packages/machine"
-  dependencies:
-    "@types/jest": ^27.0.3
   languageName: unknown
   linkType: soft
 
 "@umbrellajs/roman@workspace:packages/roman":
   version: 0.0.0-use.local
   resolution: "@umbrellajs/roman@workspace:packages/roman"
-  dependencies:
-    "@types/jest": ^27.0.3
   languageName: unknown
   linkType: soft
 
@@ -1023,8 +1014,6 @@ __metadata:
 "@umbrellajs/vector@workspace:packages/vector":
   version: 0.0.0-use.local
   resolution: "@umbrellajs/vector@workspace:packages/vector"
-  dependencies:
-    "@types/jest": ^27.0.1
   languageName: unknown
   linkType: soft
 

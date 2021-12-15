@@ -24,6 +24,7 @@ describe("roll", () => {
   });
 
   it("should return 0 if no valid input has been given", () => {
+    // eslint-disable-next-line
     expect(roll({} as any)).toEqual(0);
   });
 });
