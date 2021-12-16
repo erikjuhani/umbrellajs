@@ -67,7 +67,7 @@ type Modifier = "d" | "k";
 
 type Notation<T extends string = string> = T extends
   | `${infer Head}d${infer Tail}`
-  ? Tail extends `${number}${Operator | Modifier}${infer A}d${infer B}`
+  ? Tail extends `${number}${Operator | Modifier}${infer _A}d${infer _B}`
     ? number[]
     : Head extends ""
     ? number
