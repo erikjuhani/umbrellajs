@@ -997,6 +997,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@umbrellajs/random@workspace:packages/random":
+  version: 0.0.0-use.local
+  resolution: "@umbrellajs/random@workspace:packages/random"
+  languageName: unknown
+  linkType: soft
+
 "@umbrellajs/roman@workspace:packages/roman":
   version: 0.0.0-use.local
   resolution: "@umbrellajs/roman@workspace:packages/roman"

@@ -1,0 +1,23 @@
+{
+  "name": "@umbrellajs/random",
+  "version": "0.1.1",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/*"
+  ],
+  "description": "Random number generator",
+  "scripts": {
+    "prepublish": "run g:prepublish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/erikjuhani/umbrellajs",
+    "directory": "packages/random"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "Erik Kinnunen",
+  "license": "MIT"
+}
