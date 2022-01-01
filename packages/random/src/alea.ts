@@ -23,8 +23,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-const WHITESPACE = " ";
-
 interface PRNG {
   (): number;
   next(): number;
@@ -36,26 +34,8 @@ type State = {
   s2: number;
 };
 
-type StateWithConstant = State & { c: number };
-
-// Johannes Baagøe <baagoe@baagoe.com>, 2010
-function mash() {
-  let n = 0xefc8249d;
-
-  return (data: string): number => {
-    for (let i = 0; i < data.length; i++) {
-      n += data.charCodeAt(i);
-      let h = 0.02519603282416938 * n;
-      n = h >>> 0;
-      h -= n;
-      h *= n;
-      n = h >>> 0;
-      h -= n;
-      n += h * 0x100000000; // 2^32
-    }
-    return (n >>> 0) * 2.3283064365386963e-10; // 2^-32
-  };
-}
+const WHITESPACE = " ";
+const FRAG = 2.3283064365386963e-10; // 2^-32
 
 function stateSeeder(m: (data: string) => number = mash()) {
   return (seed: string = WHITESPACE): State => {
@@ -68,43 +48,58 @@ function stateSeeder(m: (data: string) => number = mash()) {
 }
 
 // Johannes Baagøe <baagoe@baagoe.com>, 2010
-// This has a few modifications to the original functionality.
-// Mainly by having internal infinite generator for random numbers and
-// that the provided seed should always be in string format instead of arguments array.
+function mash() {
+  let n = 0xefc8249d;
+
+  return (seed: string): number => {
+    const l = seed.length;
+    for (let i = 0; i < l; i++) {
+      n += seed.charCodeAt(i);
+      let h = 0.02519603282416938 * n;
+      n = h >>> 0;
+      h -= n;
+      h *= n;
+      n = h >>> 0;
+      h -= n;
+      n += h * 0x100000000; // 2^32
+    }
+    return (n >>> 0) * FRAG;
+  };
+}
+
+// Johannes Baagøe <baagoe@baagoe.com>, 2010
+// This has a few modifications to the original functionality,
+// but provides the exact same results.
+//
+// Modifications
+//  - Seed only as a string. Caller is responsible to provide a seed in string format.
+//  - Some minor edits to inner state handling - No looping of arguments.
+//  - Initial state is not defined as zero's, but instead initialized with mash function.
 export function alea(seed: string = (+new Date()).toString()): PRNG {
   const seedState = stateSeeder();
 
-  let { s0, s1, s2, c } = [...seed].reduce<StateWithConstant>(
-    (rootState, seedChar) => {
-      return Object.entries(seedState(seedChar)).reduce(
-        (state, [key, change]) => {
-          const s = rootState[key as keyof State] - change;
-          return {
-            ...state,
-            [key]: s < 0 ? s + 1 : s,
-            c: 1,
-          };
-        },
-        rootState
-      );
-    },
-    { ...seedState(), c: 1 }
-  );
+  const state = { ...seedState(), c: 1 };
 
-  const random = function () {
-    const t = 2091639 * s0 + c * 2.3283064365386963e-10; // 2^-32
-    s0 = s1;
-    s1 = s2;
-    return (s2 = t - (c = t | 0));
-  };
+  const d = seedState(seed);
 
-  function* g(): Generator<number> {
-    while (true) {
-      yield random();
+  for (const key in d) {
+    const k = key as keyof State;
+    const s = (state[k] -= d[k]);
+    if (s < 0) {
+      state[k] += 1;
     }
   }
 
-  return Object.assign(() => g().next().value, {
-    next: () => g().next().value,
+  const next = function () {
+    const t = 2091639 * state.s0 + state.c * FRAG;
+    state.s0 = state.s1;
+    state.s1 = state.s2;
+    state.c = t | 0;
+    state.s2 = t - state.c;
+    return state.s2;
+  };
+
+  return Object.assign(next, {
+    next,
   });
 }
