@@ -1,14 +1,24 @@
 {
   "name": "@umbrellajs/ecs",
-  "version": "0.2.5",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "version": "0.3.0",
+  "type": "module",
+  "description": "Entity component system",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/types/index.d.ts",
   "files": [
-    "dist/*"
+    "dist/cjs/*",
+    "dist/esm/*",
+    "dist/types/*"
   ],
-  "description": "Entity component system package",
+  "exports": {
+    ".": {
+      "require": "dist/cjs/index.js",
+      "default": "dist/esm/index.js"
+    }
+  },
   "scripts": {
-    "prepublish": "run g:prepublish"
+    "prepublish": "run g:prepublish && run g:rollup"
   },
   "repository": {
     "type": "git",

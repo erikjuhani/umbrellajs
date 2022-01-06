@@ -1,14 +1,24 @@
 {
   "name": "@umbrellajs/event-stream",
-  "version": "0.2.4",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "files": [
-    "dist/*"
-  ],
+  "version": "0.3.0",
+  "type": "module",
   "description": "Event stream library",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/types/index.d.ts",
+  "files": [
+    "dist/cjs/*",
+    "dist/esm/*",
+    "dist/types/*"
+  ],
+  "exports": {
+    ".": {
+      "require": "dist/cjs/index.js",
+      "default": "dist/esm/index.js"
+    }
+  },
   "scripts": {
-    "prepublish": "run g:prepublish"
+    "prepublish": "run g:prepublish && run g:rollup"
   },
   "repository": {
     "type": "git",

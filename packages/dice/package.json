@@ -1,19 +1,32 @@
 {
   "name": "@umbrellajs/dice",
-  "version": "0.3.5",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "version": "0.4.0",
+  "type": "module",
+  "description": "Dice roller",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/types/index.d.ts",
   "files": [
-    "dist/*"
+    "dist/cjs/*",
+    "dist/esm/*",
+    "dist/types/*"
   ],
-  "description": "Dice package",
+  "exports": {
+    ".": {
+      "require": "dist/cjs/index.js",
+      "default": "dist/esm/index.js"
+    }
+  },
   "scripts": {
-    "prepublish": "run g:prepublish"
+    "prepublish": "run g:prepublish && run g:rollup"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/erikjuhani/umbrellajs",
     "directory": "packages/dice"
+  },
+  "engines": {
+    "node": "^14.13.1 || >=16.0.0"
   },
   "publishConfig": {
     "access": "public"

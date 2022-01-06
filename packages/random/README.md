@@ -7,6 +7,19 @@ The same algorithm is in use in the _well known_ [rot.js](https://github.com/ond
 
 More info about [Alea algorithm](https://web.archive.org/web/20111105142920/http://baagoe.com/en/RandomMusings/javascript/).
 
+## Features
+
+- Alea algorithm for pseudo random number generation with seeding
+- Hybrid module works with es modules and commonjs
+
+```ts
+// esm
+import { alea } from "@umbrellajs/random";
+
+// commonjs
+const { alea } = require("@umbrellajs/random");
+```
+
 ## Modifications
 
 The algorithm is the same and uses same constant values and initial state.
