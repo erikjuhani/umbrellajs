@@ -1,7 +1,8 @@
 # @umbrellajs/machine - State Machine
 
-State Machine's are usually used to data storage and mutation of data by state change.
-This implementation of "Infinite/Finite" State Machine tries to be as minimal and easy to use as possible.
+State Machine's are usually used to mutate data by state change and transition.
+This implementation of State Machine tries to be as minimal and easy to use as possible
+with data storage capabilities.
 
 ## Features
 
@@ -32,11 +33,11 @@ const schema = {
   actions: {
     // We use the key of the state to define dictionary of actions for that particular state
     light: {
-      // First parameter is for payload if we want to provide external data to
-      // decide what the next state should be.
-      // Second parameter is a hook-like function that returns the current
+      // First parameter is a hook-like function that returns the current
       // state and a setState function for state mutation
-      switch: (_payload, useState) => {
+      // Second parameter is for payload if we want to provide external data to
+      // decide what the next state should be.
+      switch: (useState) => {
         // state variable holds current state `{ light: State.Off }`
         const [state, setState] = useState();
 
@@ -73,10 +74,15 @@ machine.state.light; // -> State.Off
 // For example we cannot use non existing state actions.
 machine.dispatch({ state: "light", action: "nope" }); // TypeError
 
+// Or trying to give a payload for function that is not defined in the schema.
+machine.dispatch({ state: "light", action: "switch", payload: 1 }); // TypeError
+
 // Action argument defines the action we want to run to mutate state. In this particular case `switch`.
-// In this current revision the payload must always be defined. In this case we define it as undefined.
-// As according to the machine schema the action `switch` does not use a payload for state mutation.
-machine.dispatch({ state: "light", action: "switch", payload: undefined }); // Mutates state.
+// We do not provide a payload as according to the machine schema the action `switch` does not use a payload for state mutation.
+machine.dispatch({ state: "light", action: "switch" }); // Mutates state.
+
+// If we would have defined a payload in the schema we would add a payload attribute to given dispatch object.
+machine.dispatch({ state: "light", action: "switch", payload: 1 });
 
 machine.state.light; // -> State.On
 ```

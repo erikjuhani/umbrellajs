@@ -1,8 +1,8 @@
 export type UseState<State> = () => [State, (newState: State) => void];
 
 export type FunctionType<State> = (
-  payload: any,
-  useState: UseState<State[keyof State]>
+  useState: UseState<State[keyof State]>,
+  payload?: any
 ) => void;
 
 export type ActionsMap<State> = {
@@ -24,11 +24,18 @@ export interface Machine<State, Actions extends ActionsMap<State>> {
   dispatch: <
     StateKey extends keyof State,
     Action extends keyof Actions[StateKey]
-  >(args: {
-    state: StateKey;
-    action: Action;
-    payload: Parameters<Actions[StateKey][Action]>[0];
-  }) => void;
+  >(
+    args: Parameters<Actions[StateKey][Action]>[1] extends undefined
+      ? {
+          state: StateKey;
+          action: Action;
+        }
+      : {
+          state: StateKey;
+          action: Action;
+          payload: Parameters<Actions[StateKey][Action]>[1];
+        }
+  ) => void;
 }
 
 export function createMachine<
@@ -43,9 +50,13 @@ export function createMachine<
         machine.state[key],
         (newState) => (machine.state = { ...machine.state, [key]: newState }),
       ],
-    dispatch: ({ state, action, payload }) => {
+    dispatch: ({ state, action, payload }: any) => {
       const fn = machine.actions[state][action];
-      fn && fn(payload, machine.useState(state));
+      if (fn) {
+        payload
+          ? fn(machine.useState(state), payload)
+          : fn(machine.useState(state));
+      }
     },
     match: (key, value) => {
       if (typeof value === "object") {
@@ -56,8 +67,3 @@ export function createMachine<
   };
   return machine;
 }
-
-export type HandlerFunc<State> = (
-  payload: any,
-  useState: UseState<State>
-) => void;

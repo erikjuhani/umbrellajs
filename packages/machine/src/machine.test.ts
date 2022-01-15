@@ -35,7 +35,7 @@ describe("createMachine", () => {
       state: initialState,
       actions: {
         switch: {
-          press: (_, useState) => {
+          press: (useState) => {
             const [state, setState] = useState();
             setState(Number(!state));
           },
@@ -44,9 +44,9 @@ describe("createMachine", () => {
     });
 
     expect(machine.state.switch).toEqual(SwitchState.Off);
-    machine.dispatch({ state: "switch", action: "press", payload: undefined });
+    machine.dispatch({ state: "switch", action: "press" });
     expect(machine.state.switch).toEqual(SwitchState.On);
-    machine.dispatch({ state: "switch", action: "press", payload: undefined });
+    machine.dispatch({ state: "switch", action: "press" });
     expect(machine.state.switch).toEqual(SwitchState.Off);
   });
 
@@ -55,7 +55,7 @@ describe("createMachine", () => {
       state: initialState,
       actions: {
         switch: {
-          press: (_, useState) => {
+          press: (useState) => {
             const [state, setState] = useState();
             setState(Number(!state));
           },
@@ -64,7 +64,7 @@ describe("createMachine", () => {
     });
 
     expect(machine.match("switch", SwitchState.Off)).toBeTruthy();
-    machine.dispatch({ state: "switch", action: "press", payload: undefined });
+    machine.dispatch({ state: "switch", action: "press" });
     expect(machine.match("switch", SwitchState.On)).toBeTruthy();
   });
 
@@ -83,8 +83,8 @@ describe("createMachine", () => {
       actions: {
         weather: {
           changeStation: (
-            station: { name: string; location: string },
-            useState
+            useState,
+            station: { name: string; location: string }
           ) => {
             const [state, setState] = useState();
             setState({ ...state, station });
@@ -130,13 +130,13 @@ describe("createMachine", () => {
       state: { ...initialState, brand: Brand.Generic },
       actions: {
         switch: {
-          press: (_, useState) => {
+          press: (useState) => {
             const [state, setState] = useState();
             setState(Number(!state));
           },
         },
         brand: {
-          setBrand: (brand: Brand, useState) => {
+          setBrand: (useState, brand: Brand) => {
             const [_, setState] = useState();
             setState(brand);
           },
@@ -146,7 +146,7 @@ describe("createMachine", () => {
 
     expect(machine.state.switch).toEqual(SwitchState.Off);
     expect(machine.state.brand).toEqual(Brand.Generic);
-    machine.dispatch({ state: "switch", action: "press", payload: undefined });
+    machine.dispatch({ state: "switch", action: "press" });
     machine.dispatch({
       state: "brand",
       action: "setBrand",
