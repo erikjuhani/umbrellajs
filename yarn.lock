@@ -680,6 +680,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@msgpack/msgpack@npm:^2.7.1":
+  version: 2.7.1
+  resolution: "@msgpack/msgpack@npm:2.7.1"
+  checksum: 29b4eb42aa8b300944165e1fe88c022662680b77905c108dcadba8350cc3496d56fb4de4e009d9660e7e84d5e35d206b3b829293f7d0d5944a48be60ee0ab278
+  languageName: node
+  linkType: hard
+
 "@nodelib/fs.scandir@npm:2.1.5":
   version: 2.1.5
   resolution: "@nodelib/fs.scandir@npm:2.1.5"
@@ -855,6 +862,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/ws@npm:^8.2.2":
+  version: 8.2.2
+  resolution: "@types/ws@npm:8.2.2"
+  dependencies:
+    "@types/node": "*"
+  checksum: 308957864b9a5a0378ac82f1b084fa31b1bbe85106fb0d84ed2b392e4829404f21ab6ab2c1eb782d556e59cd33d57c75ad2d0cedc4b9b9d0ca3b2311bc915578
+  languageName: node
+  linkType: hard
+
 "@types/yargs-parser@npm:*":
   version: 20.2.1
   resolution: "@types/yargs-parser@npm:20.2.1"
@@ -1006,6 +1022,16 @@ __metadata:
 "@umbrellajs/roman@workspace:packages/roman":
   version: 0.0.0-use.local
   resolution: "@umbrellajs/roman@workspace:packages/roman"
+  languageName: unknown
+  linkType: soft
+
+"@umbrellajs/rpc@workspace:packages/rpc":
+  version: 0.0.0-use.local
+  resolution: "@umbrellajs/rpc@workspace:packages/rpc"
+  dependencies:
+    "@msgpack/msgpack": ^2.7.1
+    "@types/ws": ^8.2.2
+    ws: ^8.4.2
   languageName: unknown
   linkType: soft
 
@@ -4925,6 +4951,21 @@ resolve@^1.20.0:
     utf-8-validate:
       optional: true
   checksum: 423dc0d859fa74020f5555140905b862470a60ea1567bb9ad55a087263d7718b9c94f69678be1cee9868925c570f1e6fc79d09f90c39057bc63fa2edbb2c547b
+  languageName: node
+  linkType: hard
+
+"ws@npm:^8.4.2":
+  version: 8.4.2
+  resolution: "ws@npm:8.4.2"
+  peerDependencies:
+    bufferutil: ^4.0.1
+    utf-8-validate: ^5.0.2
+  peerDependenciesMeta:
+    bufferutil:
+      optional: true
+    utf-8-validate:
+      optional: true
+  checksum: 4369caaac8d1092a73871f5cf1d87fcbb995dc4183a1bc48e4f451bc2d02d0a8bf7c17edf1da18e2be3c773b09262275356b256d1c55bc7ca096154293ba2a8c
   languageName: node
   linkType: hard
 

@@ -1,0 +1,37 @@
+{
+  "name": "@umbrellajs/rpc",
+  "version": "0.1.0",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/types/index.d.ts",
+  "files": [
+    "dist/cjs/*",
+    "dist/esm/*",
+    "dist/types/*"
+  ],
+  "exports": {
+    ".": {
+      "require": "dist/cjs/index.js",
+      "default": "dist/esm/index.js"
+    }
+  },
+  "description": "Typescript RPC package",
+  "scripts": {
+    "prepublish": "run g:prepublish && run g:rollup"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/erikjuhani/umbrellajs",
+    "directory": "packages/rpc"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "Erik Kinnunen",
+  "license": "MIT",
+  "dependencies": {
+    "@msgpack/msgpack": "^2.7.1",
+    "@types/ws": "^8.2.2",
+    "ws": "^8.4.2"
+  }
+}
