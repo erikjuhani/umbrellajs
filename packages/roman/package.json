@@ -1,20 +1,20 @@
 {
   "name": "@umbrellajs/roman",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "type": "module",
   "description": "Roman numeral converter",
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
-  "types": "dist/types/index.d.ts",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/types/index.d.ts",
   "files": [
-    "dist/cjs/*",
-    "dist/esm/*",
-    "dist/types/*"
+    "./dist/cjs/*",
+    "./dist/esm/*",
+    "./dist/types/*"
   ],
   "exports": {
     ".": {
-      "require": "dist/cjs/index.js",
-      "default": "dist/esm/index.js"
+      "require": "./dist/cjs/index.js",
+      "default": "./dist/esm/index.js"
     }
   },
   "scripts": {
