@@ -17,7 +17,7 @@
     "g:publish": "cd $INIT_CWD && yarn npm publish",
     "g:build": "cd $INIT_CWD && tsc -b",
     "g:lint": "cd $INIT_CWD && eslint",
-    "g:test": "jest $INIT_CWD",
+    "g:test": "jest --passWithNoTests $INIT_CWD",
     "g:format": "cd $INIT_CWD && prettier --write .",
     "g:rollup": "cd $INIT_CWD && rollup -c $PROJECT_CWD/rollup.config.js"
   },
