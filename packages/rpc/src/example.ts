@@ -33,8 +33,16 @@ const mutations = {
 };
 
 const subscriptions = {
-  userNameUpdate: () => {
-    return "sub";
+  randomNumber: (send: (value: number) => void, _context: typeof context) => {
+    let tick = 1000 * Math.random();
+
+    const interval = () => {
+      send(Math.random());
+      tick = 1000 * Math.random();
+      setTimeout(interval, tick);
+    };
+
+    setTimeout(interval, tick);
   },
 };
 
@@ -49,9 +57,17 @@ server.listen("3030");
 
 const c = createClient<typeof server>("http://localhost:3030");
 
-c.query("getUser", undefined).then((u) => console.log(u));
-c.query("getUserByName", { name: "B Ross" }).then((u) => console.log(u));
-c.mutate("updateUser", { id: 1, payload: { name: "Not Bob Anymore " } }).then(
-  (u) => console.log(u)
-);
-c.subscribe("userNameUpdate", undefined).then((u) => console.log(u));
+c.query("getUser", undefined).then(console.log);
+c.query("getUserByName", { name: "B Ross" }).then(console.log);
+c.mutate("updateUser", {
+  id: 1,
+  payload: { name: "Not Bob Anymore " },
+}).then(console.log);
+
+c.subscribe("randomNumber", (data) =>
+  console.log("[CLIENT 1]:", data)
+).broadcast(3);
+
+createClient<typeof server>("http://localhost:3030")
+  .subscribe("randomNumber", (data) => console.log("[CLIENT 2]:", data))
+  .broadcast(6);

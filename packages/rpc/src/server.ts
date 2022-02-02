@@ -18,6 +18,22 @@ export interface RequestListener {
   (req: Request, res: Response): void;
 }
 
+export enum MessageType {
+  Subscribe = "subscribe",
+  Broadcast = "broadcast",
+  Unsubscribe = "unsubscribe",
+}
+
+export type MessageEvent<
+  Type extends MessageType,
+  Data
+> = Type extends MessageType.Subscribe
+  ? {
+      route: string;
+      payload: { type: Type };
+    }
+  : { route: string; payload: { type: MessageType.Broadcast; data: Data } };
+
 export interface Error {
   message: string;
 }
@@ -106,15 +122,23 @@ export interface Resolvers<Context = any, Input = any, Output = any> {
   [key: string]: Resolver<Context, Input, Output>;
 }
 
+export interface Subscription<Context, Output> {
+  (send: (data: Output) => void, context: Context): void;
+}
+
+export interface Subscriptions<Context = any, Output = any> {
+  [key: string]: Subscription<Context, Output>;
+}
+
 export interface Schema<
   TContext extends Record<string, any>,
   Queries extends Resolvers<TContext> = Resolvers<TContext>,
   Mutations extends Resolvers<TContext> = Resolvers<TContext>,
-  Subscriptions extends Resolvers<TContext> = Resolvers<TContext>
+  TSubscriptions extends Subscriptions<TContext> = Subscriptions<TContext>
 > {
   queries?: Queries;
   mutations?: Mutations;
-  subscriptions?: Subscriptions;
+  subscriptions?: TSubscriptions;
 }
 
 export function createServer<
@@ -145,9 +169,6 @@ export function createServer<
     res.end(JSON.stringify({ message: "Doesn't exist" }));
   };
 
-  // TODO: Handle subscriptions
-  // Subscriptions are not working currently - but the implementation
-  // does make a websocket connection
   const router = createHttpServer(root);
 
   // Websocket connection will not be made if no subscriptions are defined
@@ -164,16 +185,36 @@ export function createServer<
       });
     });
 
-    wss.on("connection", function connection(ws) {
+    const subscriptionHandler = (ws: ws) => {
       ws.on("message", (message) => {
-        const { route, args } = JSON.parse(message.toString());
-        if (subscriptions && route in subscriptions) {
-          const routeFn = subscriptions?.[route];
-          const result = routeFn(args, context);
-          return ws.send(JSON.stringify(result));
+        const { route, payload } = JSON.parse(message.toString());
+        switch (payload.type) {
+          case "subscription":
+            // TODO: Handle duplication
+            subscriptions?.[route](
+              (value) =>
+                ws.send(
+                  JSON.stringify({
+                    route,
+                    payload: { type: "broadcast", data: value },
+                  })
+                ),
+              context
+            );
+            break;
+          case "broadcast":
+            // TODO: Might remove later
+            wss.clients.forEach((client) => {
+              if (client !== ws && client.readyState === ws.OPEN) {
+                client.send(message);
+              }
+            });
+            break;
         }
       });
-    });
+    };
+
+    wss.on("connection", subscriptionHandler);
   }
 
   return Object.assign(router, schema);

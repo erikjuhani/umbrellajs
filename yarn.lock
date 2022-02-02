@@ -1001,7 +1001,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@umbrellajs/event-stream@workspace:packages/event-stream":
+"@umbrellajs/event-stream@workspace:*, @umbrellajs/event-stream@workspace:packages/event-stream":
   version: 0.0.0-use.local
   resolution: "@umbrellajs/event-stream@workspace:packages/event-stream"
   languageName: unknown
@@ -1031,6 +1031,7 @@ __metadata:
   dependencies:
     "@msgpack/msgpack": ^2.7.1
     "@types/ws": ^8.2.2
+    "@umbrellajs/event-stream": "workspace:*"
     ws: ^8.4.2
   languageName: unknown
   linkType: soft

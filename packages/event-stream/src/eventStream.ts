@@ -42,10 +42,9 @@ export function eventStream<T = unknown>(
   return stream;
 }
 
-export const eventEmitter =
-  <T>(subject: string, stream: EventStream<T>) =>
-  (value: T) =>
-    emit(subject, value, stream);
+export const eventEmitter = <T>(subject: string, stream: EventStream<T>) => (
+  value: T
+) => emit(subject, value, stream);
 
 export function emit<T>(
   subject: string,

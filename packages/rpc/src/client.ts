@@ -1,16 +1,21 @@
 import ws from "ws";
 import { get, request } from "http";
+import { emit, eventStream } from "@umbrellajs/event-stream";
 
-import type { Resolvers } from "./server";
+import type { Resolvers, Subscriptions } from "./server";
 
 export interface ClientSchema<
   Queries extends Resolvers = Resolvers,
   Mutations extends Resolvers = Resolvers,
-  Subscriptions extends Resolvers = Resolvers
+  TSubscriptions extends Subscriptions = Subscriptions
 > {
   queries?: Queries;
   mutations?: Mutations;
-  subscriptions?: Subscriptions;
+  subscriptions?: TSubscriptions;
+}
+
+export interface Subscriber<Payload> {
+  broadcast: (payload: Payload) => Subscriber<Payload>;
 }
 
 export interface Client<Schema extends ClientSchema> {
@@ -33,18 +38,68 @@ export interface Client<Schema extends ClientSchema> {
     K extends keyof Schema["subscriptions"],
     Fn extends Schema["subscriptions"][K]
   >(
-    route: K,
-    args: Parameters<Fn extends (...args: any[]) => any ? Fn : () => void>[0]
-  ) => Promise<
-    ReturnType<Fn extends (...args: any[]) => any ? Fn : () => void>
+    route: K & string,
+    listener?: (
+      data: Parameters<
+        Parameters<
+          Fn extends (...args: any[]) => any
+            ? Fn
+            : (send: (data: any) => void) => void
+        >[0]
+      >[0]
+    ) => void
+  ) => Subscriber<
+    Parameters<
+      Parameters<
+        Fn extends (...args: any[]) => any
+          ? Fn
+          : (send: (data: any) => void) => void
+      >[0]
+    >[0]
   >;
+}
+
+function createWebsocketConnection(host: string) {
+  const socket = new ws(`ws://${host}/websocket`);
+
+  function send(socket: ws) {
+    return (
+      route: string,
+      payload: { type: "broadcast" | "subscription"; data?: any }
+    ) => {
+      const connecting = setInterval(() => {
+        if (socket.readyState === ws.OPEN) {
+          socket.send(JSON.stringify({ route, payload }));
+          clearInterval(connecting);
+        }
+        if (socket.readyState === ws.CLOSED) {
+          clearInterval(connecting);
+        }
+      }, 10);
+    };
+  }
+
+  return {
+    on: socket.on.bind(socket),
+    send: send(socket),
+  };
 }
 
 export function createClient<Schema extends ClientSchema>(
   serverAddress: string
 ): Client<Schema> {
   const url = new URL(serverAddress + "/websocket");
-  const s = new ws("ws://" + url.hostname + ":" + url.port + "/websocket");
+  const stream = eventStream<any>();
+  const ws = createWebsocketConnection(`${url.hostname}:${url.port}`);
+
+  ws.on("message", (e) => {
+    const { route, payload } = JSON.parse(e.toString());
+    emit(route, payload.data, stream);
+  });
+
+  ws.on("error", (e) => {
+    console.log(e.message);
+  });
 
   return {
     query: (route, args) => {
@@ -99,17 +154,21 @@ export function createClient<Schema extends ClientSchema>(
         req.end();
       });
     },
-    subscribe: (route, args) => {
-      // TODO: Return a subscriber from this instead.
-      s.on("open", () => {
-        s.send(JSON.stringify({ route, args }));
-      });
+    subscribe: (route, listener) => {
+      ws.send(route, { type: "subscription" });
 
-      return new Promise((resolve) => {
-        s.on("message", (e) => {
-          resolve(JSON.parse(e.toString()));
-        });
-      });
+      if (listener) {
+        stream.subscribe(route, listener);
+      }
+
+      const subscriber = {
+        broadcast: (data: any) => {
+          ws.send(route, { type: "broadcast", data });
+          return subscriber;
+        },
+      };
+
+      return subscriber;
     },
   };
 }
