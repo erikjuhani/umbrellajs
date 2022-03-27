@@ -1,4 +1,4 @@
-import ws from "ws";
+import * as ws from "ws";
 import {
   createServer as createHttpServer,
   IncomingMessage,

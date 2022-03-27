@@ -8,29 +8,30 @@
   "scripts": {
     "ws:foreach": "yarn workspaces foreach -piv --exclude umbrellajs --exclude @umbrellajs/template",
     "ws:build": "run ws:foreach run g:build",
+    "ws:typecheck": "run ws:foreach run g:tsc",
     "ws:test": "run ws:foreach run g:test",
     "ws:lint": "run ws:foreach run g:lint",
     "ws:format": "run ws:foreach run g:format",
     "ws:clean": "run ws:foreach run g:build --clean",
     "ws:publish": "run ws:foreach run g:publish",
-    "g:prepublish": "cd $INIT_CWD && run g:test && run g:lint && run g:build --clean && run g:build",
+    "g:prepublish": "cd $INIT_CWD && run g:test && run g:lint && run g:build",
     "g:publish": "cd $INIT_CWD && yarn npm publish",
-    "g:build": "cd $INIT_CWD && tsc -b",
+    "g:tsc": "cd $INIT_CWD && tsc -b",
+    "g:build": "cd $INIT_CWD && yarn node $PROJECT_CWD/esbuild.config.js",
     "g:lint": "cd $INIT_CWD && eslint",
     "g:test": "jest --passWithNoTests $INIT_CWD",
-    "g:format": "cd $INIT_CWD && prettier --write .",
-    "g:rollup": "cd $INIT_CWD && rollup -c $PROJECT_CWD/rollup.config.js"
+    "g:format": "cd $INIT_CWD && prettier --write ."
   },
   "devDependencies": {
     "@types/jest": "^27.0.3",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
+    "esbuild": "^0.14.28",
     "eslint": "^8.3.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
     "jest": "^27.3.1",
     "prettier": "2.5.0",
-    "rollup": "^2.62.0",
     "ts-jest": "^27.0.7",
     "typescript": "^4.5.2"
   }
