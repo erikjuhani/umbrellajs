@@ -1,6 +1,6 @@
 {
   "name": "@umbrellajs/roman",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "type": "module",
   "description": "Roman numeral converter",
   "main": "./dist/cjs/index.js",
@@ -18,7 +18,7 @@
     }
   },
   "scripts": {
-    "prepublish": "run g:prepublish && run g:rollup"
+    "prepublish": "run g:prepublish && run g:build"
   },
   "repository": {
     "type": "git",

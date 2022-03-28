@@ -1,6 +1,6 @@
 {
   "name": "@umbrellajs/ecs",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "type": "module",
   "description": "Entity component system",
   "main": "./dist/cjs/index.js",
@@ -18,7 +18,7 @@
     }
   },
   "scripts": {
-    "prepublish": "run g:prepublish && run g:rollup"
+    "prepublish": "run g:prepublish && run g:build"
   },
   "repository": {
     "type": "git",

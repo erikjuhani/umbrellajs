@@ -1,6 +1,6 @@
 {
   "name": "@umbrellajs/rpc",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "types": "./dist/types/index.d.ts",
@@ -17,7 +17,7 @@
   },
   "description": "Typescript RPC package",
   "scripts": {
-    "prepublish": "run g:prepublish && run g:rollup"
+    "prepublish": "run g:prepublish && run g:build"
   },
   "repository": {
     "type": "git",
