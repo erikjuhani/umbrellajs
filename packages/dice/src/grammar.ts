@@ -6,11 +6,11 @@ export default `
     const rand = Math.random();
     switch(type) {
       case "d%":
-        return { max: 100, result: Math.floor(rand * 100) + 1 };
+        return { max: 100, result: Math.floor(rand * 100) };
       case "dF":
-        return { max: 3, result: Math.floor(rand * 3) - 1 };
+        return { max: 3, result: Math.floor(rand * 2) - 1 };
     }
-    return { max: sides, result: Math.floor(rand * sides) + 1 };
+    return { max: sides, result: Math.floor(rand * sides) };
   }
   
   function sum(value) {
@@ -26,7 +26,7 @@ export default `
       .flat()
       .filter(omitWhitespace);
 
-    return parse(operator, result, value[0]);
+    return value.reduce((acc, val) => parse(operator, acc, val), result)
   }
 
   function parse(operator, result, value) {
@@ -38,7 +38,7 @@ export default `
       case "-":
         return sumResult - value;
       case "/":
-        return sumResult / (value || 1);
+        return sumResult / value;
       case "x":
       case "*":
         return sumResult * value;

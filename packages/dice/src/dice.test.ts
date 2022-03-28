@@ -1,32 +1,42 @@
-import { d20, d6, dice, diceGroup, roll } from "./dice";
+import { d20, d6, diceGroup, roll } from "./dice";
 
 describe("roll", () => {
   it.each`
-    input                     | expected
-    ${dice(6)}                | ${1}
-    ${diceGroup(d20(), d6())} | ${2}
-    ${"6d6"}                  | ${6}
-    ${"3d20d"}                | ${2}
+    input          | expected
+    ${{}}          | ${0}
+    ${"d6/0"}      | ${Infinity}
+    ${"d6"}        | ${6}
+    ${"dF"}        | ${1}
+    ${"d%"}        | ${100}
+    ${"1d20"}      | ${20}
+    ${"2d20"}      | ${[20, 20]}
+    ${"4d6"}       | ${[6, 6, 6, 6]}
+    ${"d3+2d3"}    | ${9}
+    ${"d20-2d6"}   | ${8}
+    ${"d6+d6-2d3"} | ${6}
+    ${"2d6/d6"}    | ${2}
+    ${"1d6x5"}     | ${30}
+    ${"3*d6"}      | ${18}
   `(
-    "should roll with input $input.notation and return the amount of $expected rolls",
+    "should roll with input $input and return the roll result of $expected",
     ({ input, expected }) => {
-      const result = roll(input);
-      expect(typeof result === "number" ? [result] : result).toHaveLength(
-        expected
-      );
+      jest.spyOn(Math, "random").mockReturnValue(1);
+      expect(roll(input)).toEqual(expected);
     }
   );
 
-  it("should give correct result from complex dice notation", () => {
-    const result = roll("((d20+5)-(d20+2))-2");
-    expect(result).toBeGreaterThanOrEqual(-18);
-    expect(result).toBeLessThanOrEqual(20);
-  });
-
-  it("should return 0 if no valid input has been given", () => {
-    // eslint-disable-next-line
-    expect(roll({} as any)).toEqual(0);
-  });
+  it.each`
+    random | expected
+    ${1}   | ${1}
+    ${0.5} | ${0}
+    ${0}   | ${-1}
+  `(
+    "should roll dF with random modifier $random and return the roll result of $expected",
+    ({ random, expected }) => {
+      jest.spyOn(Math, "random").mockReturnValue(random);
+      expect(roll("dF")).toEqual(expected);
+    }
+  );
 });
 
 describe("dice", () => {

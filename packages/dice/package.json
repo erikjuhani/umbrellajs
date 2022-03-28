@@ -1,6 +1,6 @@
 {
   "name": "@umbrellajs/dice",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "type": "module",
   "description": "Dice roller",
   "main": "./dist/cjs/index.js",
@@ -18,7 +18,7 @@
     }
   },
   "scripts": {
-    "prepublish": "run g:prepublish && run g:rollup"
+    "prepublish": "run g:prepublish && run g:build"
   },
   "repository": {
     "type": "git",
