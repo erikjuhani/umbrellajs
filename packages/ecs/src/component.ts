@@ -1,3 +1,5 @@
+import { __internalState } from "./internal";
+
 export type Component<Type extends string = string, Data = any> = {
   __type: Readonly<Type>;
   data: Data;
@@ -14,7 +16,10 @@ export function defineComponent<Type extends string, Data>(
   type: Type,
   data: Data
 ): ComponentDefinition<Type, Data> {
-  return Object.assign(
+  if (__internalState[type]) {
+    throw new Error(`component already defined with type: ${type}`);
+  }
+  const componentDefinition = Object.assign(
     () => {
       const component = {
         __type: type,
@@ -30,4 +35,8 @@ export function defineComponent<Type extends string, Data>(
       __data: data,
     }
   );
+
+  __internalState[componentDefinition.__type] = new Set();
+
+  return componentDefinition;
 }

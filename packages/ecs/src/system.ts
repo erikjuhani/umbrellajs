@@ -1,16 +1,14 @@
 import { ComponentDefinition } from "./component";
 import { Entity } from "./entity";
+import { __internalState } from "./internal";
 
 export function queryEntities<TComponent extends ComponentDefinition[]>(
-  entities: Entity<ComponentDefinition>[],
   ...components: TComponent
 ): Entity<TComponent[number]>[] {
   return Array.from(
     new Set(
       components.reduce<Entity<TComponent[number]>[]>((queried, component) => {
-        return queried.concat(
-          entities.filter((e) => e.components.has(component.__type))
-        );
+        return [...queried, ...__internalState[component.__type]];
       }, [])
     )
   );

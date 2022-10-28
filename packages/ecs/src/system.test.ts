@@ -1,5 +1,6 @@
 import { defineComponent } from "./component";
 import { entity } from "./entity";
+import { __internalState } from "./internal";
 import { queryEntities, system } from "./system";
 
 describe("system", () => {
@@ -15,7 +16,7 @@ describe("system", () => {
   ];
 
   it("should query with components and return entities having those components", () => {
-    const queried = queryEntities(entities, Mass, Position);
+    const queried = queryEntities(Mass, Position);
 
     expect(queried).toHaveLength(3);
     expect(!!queried[0].getComponent(Position)).toBeFalsy();
@@ -32,26 +33,25 @@ describe("system", () => {
       entity(Mass),
       entity(Velocity),
       entity(Position, Mass),
+      ...entities,
     ];
 
     const positionSystem = system<typeof Position>("position", {
       update: (entities) => {
         entities.forEach((e) => {
           const pos = e.getComponent(Position);
-          if (pos) {
-            pos.assign({ x: pos.data.x + 1, y: pos.data.y + 1 });
-          }
+          pos.assign({ x: pos.data.x + 1, y: pos.data.y + 1 });
         });
       },
     });
 
-    const positionEntities = queryEntities(pool, Position);
+    const positionEntities = queryEntities(Position);
 
     expect(pool[0].getComponent(Position)?.data).toEqual({ x: 0, y: 0 });
     expect(pool[3].getComponent(Position)?.data).toEqual({ x: 0, y: 0 });
     positionSystem.update(positionEntities);
     expect(pool[0].getComponent(Position)?.data).toEqual({ x: 1, y: 1 });
-    expect(pool[3].getComponent(Position)?.data).toEqual({ x: 1, y: 1 });
+    expect(pool[3].getComponent(Position).data).toEqual({ x: 1, y: 1 });
     positionSystem.update(positionEntities);
     expect(pool[0].getComponent(Position)?.data).toEqual({ x: 2, y: 2 });
     expect(pool[3].getComponent(Position)?.data).toEqual({ x: 2, y: 2 });

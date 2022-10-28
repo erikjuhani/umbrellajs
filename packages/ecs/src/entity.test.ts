@@ -22,17 +22,17 @@ describe("entity", () => {
 
   it("should create an entity without components", () => {
     const e = entity();
-    expect(e.components.size).toEqual(0);
+    expect(Object.keys(e.components)).toHaveLength(0);
   });
 
   it("should create an entity with unique components", () => {
     const e = entity(Position, Position, Velocity);
-    expect(e.components.size).toEqual(2);
+    expect(Object.keys(e.components)).toHaveLength(2);
   });
 
   it("should get the correct component if it exists", () => {
     const e = entity(Position);
-    expect(e.getComponent(Position)?.__type).toEqual("position");
+    expect(e.getComponent(Position).__type).toEqual("position");
   });
 
   it("should only mutate component data", () => {

@@ -1,6 +1,12 @@
 import { defineComponent } from "./component";
+import { __internalState } from "./internal";
 
 describe("component", () => {
+  beforeEach(() => {
+    for (const key in __internalState) {
+      delete __internalState[key];
+    }
+  });
   it("should create a component definition with type and data", () => {
     const Mass = defineComponent("mass", 0);
     expect(Mass.__type).toEqual("mass");
