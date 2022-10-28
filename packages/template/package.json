@@ -1,20 +1,33 @@
 {
   "name": "@umbrellajs/template",
   "version": "0.1.2",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "files": [
-    "./dist/*"
-  ],
+  "type": "module",
   "description": "Template typescript package",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/types/index.d.ts",
+  "files": [
+    "./dist/cjs/*",
+    "./dist/esm/*",
+    "./dist/types/*"
+  ],
+  "exports": {
+    ".": {
+      "require": "./dist/cjs/index.js",
+      "default": "./dist/esm/index.js"
+    }
+  },
+  "scripts": {
+    "prepublish": "run g:prepublish && run g:build"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/erikjuhani/umbrellajs",
     "directory": "packages/template"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "author": "Erik Kinnunen",
-  "license": "MIT",
-  "devDependencies": {
-    "@types/jest": "^27.0.3"
-  }
+  "license": "MIT"
 }
